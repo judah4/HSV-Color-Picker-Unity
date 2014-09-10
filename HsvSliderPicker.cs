@@ -21,10 +21,12 @@ public class HsvSliderPicker : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     void PlacePointer(PointerEventData eventData)
     {
-
+        
         var pos = new Vector2(eventData.position.x - picker.hsvSlider.rectTransform.position.x, picker.hsvSlider.rectTransform.position.y - eventData.position.y);
 
-        pos.y /= picker.hsvSlider.rectTransform.rect.height;
+        pos.y /= picker.hsvSlider.rectTransform.rect.height * picker.hsvSlider.canvas.transform.lossyScale.y;
+        
+        //Debug.Log(eventData.position.ToString() + " " + picker.hsvSlider.rectTransform.position + " " + picker.hsvSlider.rectTransform.rect.height);
         pos.y = Mathf.Clamp(pos.y, 0, 1f);
 
         picker.MovePointer(pos.y);
