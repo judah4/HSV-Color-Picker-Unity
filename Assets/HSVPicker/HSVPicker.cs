@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class HSVPicker : MonoBehaviour {
 
-    public Color currentColor;
+	public HexRGB hexrgb;
+
+    public static Color currentColor;
     public Image colorImage;
     public Image pointer;
     public Image cursor;
@@ -44,7 +46,8 @@ public class HSVPicker : MonoBehaviour {
             {
                 AssignColor(currentColor);
             }
-            sliderRText.text = "R:" + (currentColor.r * 255f);
+            sliderRText.text = "R:" + (int)(currentColor.r * 255f);
+			hexrgb.ManipulateViaRGB2Hex();
         });
         sliderG.onValueChanged.AddListener(newValue =>
         {
@@ -53,7 +56,8 @@ public class HSVPicker : MonoBehaviour {
             {
                 AssignColor(currentColor);
             }
-            sliderGText.text = "G:" + (currentColor.g * 255f);
+            sliderGText.text = "G:" + (int)(currentColor.g * 255f);
+			hexrgb.ManipulateViaRGB2Hex();
         });
         sliderB.onValueChanged.AddListener(newValue =>
         {
@@ -62,7 +66,8 @@ public class HSVPicker : MonoBehaviour {
             {
                 AssignColor(currentColor);
             }
-            sliderBText.text = "B:" + (currentColor.b * 255f);
+            sliderBText.text = "B:" + (int)(currentColor.b * 255f);
+			hexrgb.ManipulateViaRGB2Hex();
         });
 
         
