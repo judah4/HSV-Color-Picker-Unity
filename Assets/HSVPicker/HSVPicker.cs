@@ -7,7 +7,7 @@ public class HSVPicker : MonoBehaviour {
 
 	public HexRGB hexrgb;
 
-    public static Color currentColor;
+    public Color currentColor;
     public Image colorImage;
     public Image pointer;
     public Image cursor;
