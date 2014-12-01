@@ -11,7 +11,8 @@ public class HexRGB : MonoBehaviour {
 	public HSVPicker hsvpicker; 
 
 	public void ManipulateViaRGB2Hex(){
-		string hex = ColorToHex (HSVPicker.currentColor);
+		Color color = hsvpicker.currentColor;
+		string hex = ColorToHex (color);
 		textColor.text = hex;
 	}
 
