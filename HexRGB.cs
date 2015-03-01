@@ -6,7 +6,8 @@ using System.Globalization;
 
 public class HexRGB : MonoBehaviour {
 
-	public Text textColor; 
+
+	public InputField textColor; 
 
 	public HSVPicker hsvpicker; 
 
@@ -26,10 +27,10 @@ public class HexRGB : MonoBehaviour {
 	public void ManipulateViaHex2RGB(){
 		string hex = textColor.text;
 
-		Vector3 rgb = Hex2RGB (hex);
-		Color color = NormalizeVector4 (rgb,255f,1f); print (rgb);
+		Color rgb = Hex2RGB (hex);
+		//Color color = NormalizeVector4 (rgb,255f,1f); print (rgb);
 
-		hsvpicker.AssignColor (color);
+		hsvpicker.AssignColor (rgb);
 	}
 
 	static Color NormalizeVector4(Vector3 v,float r,float a){
@@ -39,7 +40,7 @@ public class HexRGB : MonoBehaviour {
 		return new Color (red,green,blue,a);
 	}
 
-	Vector3 Hex2RGB(string hexColor){
+	Color Hex2RGB(string hexColor){
 		//Remove # if present
 		if (hexColor.IndexOf('#') != -1)
 			hexColor = hexColor.Replace("#", "");
@@ -64,8 +65,10 @@ public class HexRGB : MonoBehaviour {
 			green = int.Parse(hexColor[1].ToString() + hexColor[1].ToString(), NumberStyles.AllowHexSpecifier);
 			blue = int.Parse(hexColor[2].ToString() + hexColor[2].ToString(), NumberStyles.AllowHexSpecifier);
 		}
-		
-		return new Vector3 (red, green, blue);
+
+        var color = new Color32((byte)red, (byte)green, (byte)blue, 255);
+        return color;
+		//return new Vector3 (red, green, blue);
 	
 	}
 
