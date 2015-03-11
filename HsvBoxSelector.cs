@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class HsvBoxSelector : MonoBehaviour, IDragHandler, IPointerDownHandler {
+public class HsvBoxSelector : MonoBehaviour, IPointerDownHandler//IDragHandler
+{
 
-    public HSVPicker picker;
+    //public HSVPicker picker;
+    public HSVDragger dragger;
+    private RectTransform rectTransform;
+    
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake ()
+	{
+	    rectTransform = GetComponent<RectTransform>();
 	}
 	
 	// Update is called once per frame
@@ -19,16 +25,21 @@ public class HsvBoxSelector : MonoBehaviour, IDragHandler, IPointerDownHandler {
     void PlaceCursor(PointerEventData eventData)
     {
 
-        var pos = new Vector2(eventData.position.x - picker.hsvImage.rectTransform.position.x, picker.hsvImage.rectTransform.rect.height * picker.hsvImage.transform.lossyScale.y - (picker.hsvImage.rectTransform.position.y - eventData.position.y));
-        // Debug.Log(pos);
-        pos.x /= picker.hsvImage.rectTransform.rect.width * picker.hsvImage.transform.lossyScale.x;
-        pos.y /= picker.hsvImage.rectTransform.rect.height * picker.hsvImage.transform.lossyScale.y;
+        var pos = eventData.position;
 
-        pos.x = Mathf.Clamp(pos.x, 0, .9999f);  //1 is the same as 0
-        pos.y = Mathf.Clamp(pos.y, 0, .9999f);
+        //pos.x += rectTransform.sizeDelta.x / 2;
+        //pos.y += rectTransform.sizeDelta.y / 2;
+        //pos.x /= rectTransform.sizeDelta.x;
+        //pos.y /= rectTransform.sizeDelta.y;
 
-        //Debug.Log(pos);
-        picker.MoveCursor(pos.x, pos.y);
+        //var pos = new Vector2(eventData.worldPosition.x - picker.hsvImage.rectTransform.position.x, picker.hsvImage.rectTransform.rect.height * picker.hsvImage.transform.lossyScale.y - (picker.hsvImage.rectTransform.position.y - eventData.worldPosition.y));
+         Debug.Log(pos + " " + rectTransform.position);
+        //pos.x /= picker.hsvImage.rectTransform.rect.width * picker.hsvImage.transform.lossyScale.x;
+        //pos.y /= picker.hsvImage.rectTransform.rect.height * picker.hsvImage.transform.lossyScale.y;
+
+
+        //dragger.SetSelectorPosition(pos.x, pos.y);
+
     }
 
 
@@ -42,4 +53,6 @@ public class HsvBoxSelector : MonoBehaviour, IDragHandler, IPointerDownHandler {
     {
         PlaceCursor(eventData);
     }
+
+    
 }

@@ -4,7 +4,7 @@ using System.Collections;
 public class ColorPickerTester : MonoBehaviour 
 {
 
-    public Renderer renderer;
+    public new Renderer renderer;
     public HSVPicker picker;
 
 	// Use this for initialization
