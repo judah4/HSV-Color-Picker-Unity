@@ -14,6 +14,9 @@ public class HSVPicker : MonoBehaviour {
     public RawImage hsvSlider;
     public RawImage hsvImage;
 
+    public HsvSliderPicker sliderPicker;
+    public HSVDragger colorBoxSelector;
+
     //public InputField inputR;
     //public InputField inputG;
     //public InputField inputB;
@@ -136,7 +139,8 @@ public class HSVPicker : MonoBehaviour {
 
         cursorX = posX;
         cursorY = posY;
-        cursor.rectTransform.anchoredPosition = new Vector2(posX * hsvImage.rectTransform.rect.width, posY * hsvImage.rectTransform.rect.height - hsvImage.rectTransform.rect.height);
+        colorBoxSelector.SetSelectorPosition(posX, posY);
+        //cursor.rectTransform.anchoredPosition = new Vector2(posX * hsvImage.rectTransform.rect.width, posY * hsvImage.rectTransform.rect.height - hsvImage.rectTransform.rect.height);
 
         currentColor = GetColor(cursorX, cursorY);
         colorImage.color = currentColor;
@@ -185,7 +189,8 @@ public class HSVPicker : MonoBehaviour {
 
             hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, mainColor);
         }
-        pointer.rectTransform.anchoredPosition = new Vector2(0, -pointerPos * hsvSlider.rectTransform.rect.height);
+        sliderPicker.SetSliderPosition(pointerPos);
+        //pointer.rectTransform.anchoredPosition = new Vector2(0, -pointerPos * hsvSlider.rectTransform.rect.height);
 
         currentColor = GetColor(cursorX, cursorY);
         colorImage.color = currentColor;

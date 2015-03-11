@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HsvSliderPicker : MonoBehaviour, IDragHandler, IPointerDownHandler
 {
 
     public HSVPicker picker;
+    public Slider slider;
 
     // Use this for initialization
     void Start()
@@ -42,5 +44,15 @@ public class HsvSliderPicker : MonoBehaviour, IDragHandler, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         PlacePointer(eventData);
+    }
+
+    public void SliderPositionChanged(float sliderValue)
+    {
+        picker.MovePointer(sliderValue);
+    }
+
+    internal void SetSliderPosition(float pointerPos)
+    {
+        slider.normalizedValue = pointerPos;
     }
 }
