@@ -9,13 +9,12 @@ public class HSVPicker : MonoBehaviour {
 
     public Color currentColor;
     public Image colorImage;
-    public Image pointer;
-    public Image cursor;
     public RawImage hsvSlider;
     public RawImage hsvImage;
 
     public HsvSliderPicker sliderPicker;
-    public HSVDragger colorBoxSelector;
+    //public HSVDragger colorBoxSelector;
+	public BoxSlider boxSlider;
 
     //public InputField inputR;
     //public InputField inputG;
@@ -49,7 +48,7 @@ public class HSVPicker : MonoBehaviour {
             {
                 AssignColor(currentColor);
             }
-            sliderRText.text = "R:" + (int)(currentColor.r * 255f);
+			sliderRText.text = "R:" + Mathf.RoundToInt(currentColor.r * 255f);
 			hexrgb.ManipulateViaRGB2Hex();
         });
         sliderG.onValueChanged.AddListener(newValue =>
@@ -59,7 +58,7 @@ public class HSVPicker : MonoBehaviour {
             {
                 AssignColor(currentColor);
             }
-            sliderGText.text = "G:" + (int)(currentColor.g * 255f);
+			sliderGText.text = "G:" + Mathf.RoundToInt(currentColor.g * 255f);
 			hexrgb.ManipulateViaRGB2Hex();
         });
         sliderB.onValueChanged.AddListener(newValue =>
@@ -69,7 +68,7 @@ public class HSVPicker : MonoBehaviour {
             {
                 AssignColor(currentColor);
             }
-            sliderBText.text = "B:" + (int)(currentColor.b * 255f);
+			sliderBText.text = "B:" + Mathf.RoundToInt(currentColor.b * 255f);
 			hexrgb.ManipulateViaRGB2Hex();
         });
 
@@ -120,8 +119,11 @@ public class HSVPicker : MonoBehaviour {
 
     }
 
+	public void PlaceCursor(float posX, float posY) {
+		MoveCursor(posX, posY);
+	}
 
-    public Color MoveCursor(float posX, float posY, bool updateInputs=true)
+    public Color MoveCursor(float posX, float posY, bool updateInputs = true)
     {
         dontAssignUpdate = updateInputs;
         if (posX > 1)
@@ -133,13 +135,15 @@ public class HSVPicker : MonoBehaviour {
             posY %= 1;
         }
 
-        posY=Mathf.Clamp(posY, 0, .9999f);
-        posX =Mathf.Clamp(posX, 0, .9999f);
+		posY=Mathf.Clamp(posY, 0, 1);//.9999f);
+		posX =Mathf.Clamp(posX, 0, 1);//.9999f);
         
 
         cursorX = posX;
         cursorY = posY;
-        colorBoxSelector.SetSelectorPosition(posX, posY);
+		boxSlider.normalizedValue = posX;
+		boxSlider.normalizedValueY = posY;
+        //colorBoxSelector.SetSelectorPosition(posX, posY);
         //cursor.rectTransform.anchoredPosition = new Vector2(posX * hsvImage.rectTransform.rect.width, posY * hsvImage.rectTransform.rect.height - hsvImage.rectTransform.rect.height);
 
         currentColor = GetColor(cursorX, cursorY);
@@ -155,9 +159,12 @@ public class HSVPicker : MonoBehaviour {
     }
 
     public Color GetColor(float posX, float posY)
-    {
+	{
+		var color = HSVUtil.ConvertHsvToRgb(pointerPos * -360 + 360, posX, posY);
+
+		return color;
         //Debug.Log(posX + " " + posY);
-        return ((Texture2D)hsvImage.texture).GetPixel((int)(cursorX * hsvImage.texture.width ), (int)(cursorY * hsvImage.texture.height));
+        //return ((Texture2D)hsvImage.texture).GetPixel((int)(posX * hsvImage.texture.width ), (int)(posY * hsvImage.texture.height));
     }
 
     public Color MovePointer(float newPos, bool updateInputs = true)
@@ -211,9 +218,9 @@ public class HSVPicker : MonoBehaviour {
         sliderG.value = currentColor.g;
         sliderB.value = currentColor.b;
 
-        sliderRText.text = "R:"+ (currentColor.r * 255f);
-        sliderGText.text = "G:" + (currentColor.g * 255f);
-        sliderBText.text = "B:" + (currentColor.b * 255f);
+		sliderRText.text = "R:"+ Mathf.RoundToInt(currentColor.r * 255f);
+		sliderGText.text = "G:" + Mathf.RoundToInt(currentColor.g * 255f);
+		sliderBText.text = "B:" + Mathf.RoundToInt(currentColor.b * 255f);
     }
 
      void OnDestroy()

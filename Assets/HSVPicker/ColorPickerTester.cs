@@ -14,6 +14,7 @@ public class ColorPickerTester : MonoBehaviour
         {
             renderer.material.color = color;
         });
+		renderer.material.color = picker.currentColor;
 	}
 	
 	// Update is called once per frame
