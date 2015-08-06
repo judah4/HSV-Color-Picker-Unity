@@ -9,18 +9,6 @@ public class HsvSliderPicker : MonoBehaviour, IDragHandler, IPointerDownHandler
     public HSVPicker picker;
     public Slider slider;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void PlacePointer(PointerEventData eventData)
     {
         
@@ -28,8 +16,7 @@ public class HsvSliderPicker : MonoBehaviour, IDragHandler, IPointerDownHandler
 
         pos.y /= picker.hsvSlider.rectTransform.rect.height * picker.hsvSlider.canvas.transform.lossyScale.y;
         
-        //Debug.Log(eventData.position.ToString() + " " + picker.hsvSlider.rectTransform.position + " " + picker.hsvSlider.rectTransform.rect.height);
-        pos.y = Mathf.Clamp(pos.y, 0, 1f);
+		pos.y = Mathf.Clamp(pos.y, 0, 1f);
 
         picker.MovePointer(pos.y);
     }
@@ -48,7 +35,7 @@ public class HsvSliderPicker : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     public void SliderPositionChanged(float sliderValue)
     {
-		picker.MovePointer(sliderValue);//, !picker.dontAssignUpdate);
+		picker.MovePointer(sliderValue);
     }
 
     internal void SetSliderPosition(float pointerPos)
