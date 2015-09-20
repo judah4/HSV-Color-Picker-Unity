@@ -5,7 +5,7 @@ public class ColorPickerTester : MonoBehaviour
 {
 
     public new Renderer renderer;
-    public HSVPicker picker;
+    public ColorPicker picker;
 
 	// Use this for initialization
 	void Start () 
@@ -14,7 +14,7 @@ public class ColorPickerTester : MonoBehaviour
         {
             renderer.material.color = color;
         });
-		renderer.material.color = picker.currentColor;
+		renderer.material.color = picker.CurrentColor;
 	}
 	
 	// Update is called once per frame
