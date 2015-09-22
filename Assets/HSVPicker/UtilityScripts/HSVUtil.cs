@@ -181,11 +181,7 @@ using System;
         {
             var list = GenerateHsvSpectrum(minHue, maxHue);
 
-            float interval = 1;
-            if (list.Count > height)
-            {
-                interval = (float)list.Count / height;
-            }
+            float interval = (float)list.Count / height;
 
             var texture = new Texture2D(width, height);
 
