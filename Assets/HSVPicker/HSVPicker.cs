@@ -105,6 +105,8 @@ public class HSVPicker : MonoBehaviour {
 		}
 
         MoveCursor(cursorX, cursorY);
+		
+		sliderPicker.SetSliderPosition(1f - pointerPos);
 	}
 	
     public void AssignColor(Color color)
