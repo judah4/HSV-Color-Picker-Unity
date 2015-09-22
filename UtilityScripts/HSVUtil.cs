@@ -145,7 +145,7 @@ using System;
 
         // Generates a list of colors with hues ranging from 0 360
         // and a saturation and value of 1. 
-        public static List<Color> GenerateHsvSpectrum()
+        public static List<Color> GenerateHsvSpectrum(int minHue = 0, int maxHue = 360)
         {
 
             List<Color> colorsList = new List<Color>(8);
@@ -161,7 +161,7 @@ using System;
 
             //}
 
-            for (int i = 0; i < 359; i++)
+            for (int i = minHue; i < (maxHue - 1); i++)
             {
 
                 colorsList.Add(
@@ -170,16 +170,16 @@ using System;
                 );
 
             }
-            colorsList.Add(ConvertHsvToRgb(0, 1, 1));
 
+			colorsList.Add(ConvertHsvToRgb(maxHue, 1, 1));
 
             return colorsList;
 
         }
 
-        public static Texture2D GenerateHSVTexture(int width, int height)
+        public static Texture2D GenerateHSVTexture(int width, int height, int minHue = 0, int maxHue = 360)
         {
-            var list = GenerateHsvSpectrum();
+            var list = GenerateHsvSpectrum(minHue, maxHue);
 
             float interval = 1;
             if (list.Count > height)
@@ -215,21 +215,22 @@ using System;
         }
 
 
-        public static Texture2D GenerateColorTexture(Color mainColor, Texture2D texture)
+        public static Texture2D GenerateColorTexture(Color mainColor, Texture2D texture, int minHue = 0, int maxHue = 360, float minSat = 0f, float maxSat = 1f, float minV = 0f, float maxV = 1f)
         {
             int width = texture.width;
             int height = texture.height;
 
-            var hsvColor = ConvertRgbToHsv((int)(mainColor.r * 255), (int)(mainColor.g * 255), (int)(mainColor.b * 255));
+            var hsvColor = ConvertRgbToHsv(mainColor);
+			var realH = (minHue + maxHue) - (360f - hsvColor.H);
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
                     var adjustedColor = hsvColor;
-                    adjustedColor.V = (float)y / height;
-                    adjustedColor.S = (float)x / width;
-                    var color = ConvertHsvToRgb(adjustedColor.H, adjustedColor.S, adjustedColor.V);
+                    adjustedColor.V = Mathf.Clamp((float)y / height, minV, maxV);
+                    adjustedColor.S = Mathf.Clamp((float)x / width, minSat, maxSat);
+                    var color = ConvertHsvToRgb(realH, adjustedColor.S, adjustedColor.V);
                     texture.SetPixel(x, y, color);
                 }
             }
@@ -239,9 +240,9 @@ using System;
             return texture;
         }
 
-        public static Texture2D GenerateColorTexture(int width, int height, Color mainColor)
+        public static Texture2D GenerateColorTexture(int width, int height, Color mainColor, int minHue = 0, int maxHue = 360, float minSat = 0f, float maxSat = 1f, float minV = 0f, float maxV = 1f)
         {
-            return GenerateColorTexture(mainColor, new Texture2D(width, height));
+            return GenerateColorTexture(mainColor, new Texture2D(width, height), minHue, maxHue, minSat, maxSat, minV, maxV);
         }
 
         
