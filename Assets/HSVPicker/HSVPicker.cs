@@ -29,6 +29,13 @@ public class HSVPicker : MonoBehaviour {
 
     public float pointerPos = 0;
 
+	public int minHue = 0;
+	public int maxHue = 360;
+	public float minSat = 0f;
+	public float maxSat = 1f;
+	public float minV = 0f;
+	public float maxV = 1f;
+
     public float cursorX = 0;
     public float cursorY = 0;
 
@@ -39,53 +46,75 @@ public class HSVPicker : MonoBehaviour {
 
     void Awake()
     {
-        hsvSlider.texture = HSVUtil.GenerateHSVTexture((int)hsvSlider.rectTransform.rect.width, (int)hsvSlider.rectTransform.rect.height);
+		if (hsvSlider)
+			hsvSlider.texture = HSVUtil.GenerateHSVTexture((int)hsvSlider.rectTransform.rect.width, (int)hsvSlider.rectTransform.rect.height, minHue, maxHue);
+		
+		if (sliderR)
+		{
+			sliderR.onValueChanged.AddListener(newValue =>
+			{
+				if(isChanging) return;
+				isChanging = true;
+				r = (byte)newValue;
+				currentColor.r = r;
+				AssignColor(currentColor);
+				sliderRText.text = "R:" + r;
+				hexrgb.ManipulateViaRGB2Hex();
+				isChanging = false;
+			});
+		}
 
-        sliderR.onValueChanged.AddListener(newValue =>
-        {
-			if(isChanging) return;
-			isChanging = true;
-			r = (byte)newValue;
-            currentColor.r = r;
-			AssignColor(currentColor);
-            sliderRText.text = "R:" + r;
-			hexrgb.ManipulateViaRGB2Hex();
-			isChanging = false;
-        });
-        sliderG.onValueChanged.AddListener(newValue =>
-        {
-			if(isChanging) return;
-			isChanging = true;
-			g = (byte)newValue;
-            currentColor.g = g;
-            AssignColor(currentColor);
-			sliderGText.text = "G:" + g;
-			hexrgb.ManipulateViaRGB2Hex();
-			isChanging = false;
-        });
-        sliderB.onValueChanged.AddListener(newValue =>
-        {
-			if(isChanging) return;
-			isChanging = true;
-			b = (byte)newValue;
-            currentColor.b = b;
-            AssignColor(currentColor);
-			sliderBText.text = "B:" + b;
-			hexrgb.ManipulateViaRGB2Hex();
-			isChanging = false;
-        });
+		if (sliderG)
+		{
+			sliderG.onValueChanged.AddListener(newValue =>
+			{
+				if(isChanging) return;
+				isChanging = true;
+				g = (byte)newValue;
+				currentColor.g = g;
+				AssignColor(currentColor);
+				sliderGText.text = "G:" + g;
+				hexrgb.ManipulateViaRGB2Hex();
+				isChanging = false;
+			});
+		}
 
+		if (sliderB)
+		{
+			sliderB.onValueChanged.AddListener(newValue =>
+			{
+				if(isChanging) return;
+				isChanging = true;
+				b = (byte)newValue;
+				currentColor.b = b;
+				AssignColor(currentColor);
+				sliderBText.text = "B:" + b;
+				hexrgb.ManipulateViaRGB2Hex();
+				isChanging = false;
+			});
+		}
         
-        hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, ((Texture2D)hsvSlider.texture).GetPixelBilinear(0, 0));
+		if (hsvImage)
+		{
+			var startColor = Color.white;
+
+			if (hsvSlider)
+				startColor = ((Texture2D)hsvSlider.texture).GetPixelBilinear(0, 0.035f);
+
+			hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, startColor, minHue, maxHue, minSat, maxSat, minV, maxV);
+		}
+
         MoveCursor(cursorX, cursorY);
+		
+		sliderPicker.SetSliderPosition(1f - pointerPos);
 	}
 	
     public void AssignColor(Color color)
     {
-        
         var hsv = HSVUtil.ConvertRgbToHsv(color);
 
-        float hOffset = (float)(hsv.H / 360);
+        //float hOffset = (float)(hsv.H / (minHue + maxHue));
+		float hOffset = (float)(hsv.H / 360);
 
         MovePointer(hOffset, false);
         MoveCursor((float)hsv.S, (float)hsv.V, false);
@@ -144,42 +173,52 @@ public class HSVPicker : MonoBehaviour {
 
     public Color GetColor(float posX, float posY)
 	{
-		var color = HSVUtil.ConvertHsvToRgb(pointerPos * -360 + 360, posX, posY);
+        posY = Mathf.Clamp(posY, minV, maxV);
+        posX = Mathf.Clamp(posX, minSat, maxSat);
+
+		var color = HSVUtil.ConvertHsvToRgb(pointerPos * -(minHue + maxHue) + (minHue + maxHue), posX, posY);
 
 		return color;
 	}
 
     public Color MovePointer(float newPos, bool updateInputs = true)
     {
-
         dontAssignUpdate = updateInputs;
+		
+		newPos = Mathf.Clamp(1f - newPos, 0.05f, 0.99f);
+
+		/*
         if (newPos > 1)
         {
             newPos %= 1f;
         }
+		*/
+
         pointerPos = newPos;
 
         var mainColor =((Texture2D)hsvSlider.texture).GetPixelBilinear(0, pointerPos);
-        if (hsvImage.texture != null)
+
+        if (hsvImage && hsvImage.texture != null)
         {
             if ((int)hsvImage.rectTransform.rect.width != hsvImage.texture.width || (int)hsvImage.rectTransform.rect.height != hsvImage.texture.height)
             {
                 Destroy(hsvImage.texture);
                 hsvImage.texture = null;
 
-                hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, mainColor);
+                hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, mainColor, minHue, maxHue, minSat, maxSat, minV, maxV);
             }
             else
             {
-                HSVUtil.GenerateColorTexture(mainColor, (Texture2D)hsvImage.texture);
+                HSVUtil.GenerateColorTexture(mainColor, (Texture2D)hsvImage.texture, minHue, maxHue, minSat, maxSat, minV, maxV);
             }
         }
         else
         {
 
-            hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, mainColor);
+            hsvImage.texture = HSVUtil.GenerateColorTexture((int)hsvImage.rectTransform.rect.width, (int)hsvImage.rectTransform.rect.height, mainColor, minHue, maxHue, minSat, maxSat, minV, maxV);
         }
-        sliderPicker.SetSliderPosition(pointerPos);
+
+        //sliderPicker.SetSliderPosition(pointerPos);
 
 		if(isChanging) return currentColor;
 		isChanging = true;
@@ -203,24 +242,33 @@ public class HSVPicker : MonoBehaviour {
 
     public void UpdateInputs()
     {
+		if (sliderR)
+			sliderR.value = r;
 
-        sliderR.value = r;
-        sliderG.value = g;
-        sliderB.value = b;
+		if (sliderG)
+			sliderG.value = g;
 
-		sliderRText.text = "R:"+ r;
-		sliderGText.text = "G:" + g;
-		sliderBText.text = "B:" + b;
+		if (sliderB)
+			sliderB.value = b;
+
+		if (sliderRText)
+			sliderRText.text = "R:"+ r;
+
+		if (sliderGText)
+			sliderGText.text = "G:" + g;
+
+		if (sliderBText)
+			sliderBText.text = "B:" + b;
     }
 
      void OnDestroy()
     {
-        if (hsvSlider.texture != null)
+        if (hsvSlider && hsvSlider.texture != null)
         {
             Destroy(hsvSlider.texture);
         }
 
-        if (hsvImage.texture != null)
+        if (hsvImage && hsvImage.texture != null)
         {
             Destroy(hsvImage.texture);
         }
