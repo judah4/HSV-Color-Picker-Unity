@@ -67,14 +67,8 @@ public static class HSVUtil
             g = v;
             b = v;
         }
-<<<<<<< HEAD
 
-        // Generates a list of colors with hues ranging from 0 360
-        // and a saturation and value of 1. 
-        public static List<Color> GenerateHsvSpectrum(int minHue = 0, int maxHue = 360)
-=======
         else
->>>>>>> ae93a66b32119e349371256cb1a74aeb4c250e53
         {
             int i;
             double f, p, q, t;
@@ -92,11 +86,8 @@ public static class HSVUtil
             q = v * (1.0 - (s * f));
             t = v * (1.0 - (s * (1.0f - f)));
 
-<<<<<<< HEAD
-            for (int i = minHue; i < (maxHue - 1); i++)
-=======
+
             switch (i)
->>>>>>> ae93a66b32119e349371256cb1a74aeb4c250e53
             {
                 case 0:
                     r = v;
@@ -134,20 +125,6 @@ public static class HSVUtil
                     b = q;
                     break;
             }
-<<<<<<< HEAD
-
-			colorsList.Add(ConvertHsvToRgb(maxHue, 1, 1));
-
-            return colorsList;
-
-        }
-
-        public static Texture2D GenerateHSVTexture(int width, int height, int minHue = 0, int maxHue = 360)
-        {
-            var list = GenerateHsvSpectrum(minHue, maxHue);
-
-            float interval = (float)list.Count / height;
-=======
 
         }
 
@@ -155,7 +132,7 @@ public static class HSVUtil
 
     }
 }
->>>>>>> ae93a66b32119e349371256cb1a74aeb4c250e53
+
 
 #endregion ColorUtilities
 

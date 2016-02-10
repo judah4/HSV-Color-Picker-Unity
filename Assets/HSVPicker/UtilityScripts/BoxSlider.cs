@@ -154,7 +154,17 @@ namespace UnityEngine.UI
 			#endif
 		}
 
-		public static bool SetClass<T>(ref T currentValue, T newValue) where T: class
+	    public void LayoutComplete()
+	    {
+	        
+	    }
+
+	    public void GraphicUpdateComplete()
+	    {
+
+	    }
+
+	    public static bool SetClass<T>(ref T currentValue, T newValue) where T: class
 		{
 			if ((currentValue == null && newValue == null) || (currentValue != null && currentValue.Equals(newValue)))
 				return false;
