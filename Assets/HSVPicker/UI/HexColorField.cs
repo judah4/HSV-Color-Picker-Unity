@@ -26,7 +26,7 @@ public class HexColorField : MonoBehaviour
 
     private void OnDestroy()
     {
-        hexInputField.onValueChange.RemoveListener(UpdateColor);
+        hexInputField.onValueChanged.RemoveListener(UpdateColor);
         hsvpicker.onValueChanged.RemoveListener(UpdateHex);
     }
 
