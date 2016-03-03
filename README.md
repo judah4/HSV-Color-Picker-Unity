@@ -1,14 +1,14 @@
 HSV-Color-Picker-Unity
 ======================
 
-HSV color picker for Unity's uGUI
+HSV color picker using  Unity UI
 
 ![alt tag](http://forum.unity3d.com/attachments/screen-shot-2014-11-30-at-7-25-50-am-png.119972/?.png)
 Should be really easy to use. Just add the prefab to the canvas, hook up an event, and it's good to go.
 ```csharp
 
     public Renderer renderer;
-	public HSVPicker picker;
+	public ColorPicker picker;
      
 	// Use this for initialization
 	void Start ()
@@ -17,6 +17,7 @@ Should be really easy to use. Just add the prefab to the canvas, hook up an even
 		{
 			renderer.material.color = color;
 		});
+		renderer.material.color = picker.CurrentColor;
 	}
  
 	// Update is called once per frame
@@ -29,5 +30,5 @@ if you want to assign your own color first, just do this call and it sets the sl
 
 ```csharp
     Color color = Color.green;
-    picker.AssignColor(color);
+    picker.CurrentColor = color;
 ```
