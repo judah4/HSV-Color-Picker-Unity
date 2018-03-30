@@ -3,7 +3,7 @@ HSV-Color-Picker-Unity
 
 HSV color picker using  Unity UI
 
-![alt tag](http://forum.unity3d.com/attachments/screen-shot-2014-11-30-at-7-25-50-am-png.119972/?.png)
+![alt tag](https://i.imgur.com/Fn2T6Nu.png)
 Should be really easy to use. Just add the prefab to the canvas, hook up an event, and it's good to go.
 ```csharp
 
