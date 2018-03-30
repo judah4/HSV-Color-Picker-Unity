@@ -1,10 +1,11 @@
 HSV Color Picker
 ======================
 
-For:  
+## Versions
+Unity 2017  
 Unity 5.6  
-Unity 2017
-Unity 2018
+Unity 2018  
+2017 is default, unity 5 and 2018 are on branches.  
 
 HSV color picker using Unity UI
 
