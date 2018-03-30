@@ -1,7 +1,12 @@
-HSV-Color-Picker-Unity
+HSV Color Picker
 ======================
 
-HSV color picker using  Unity UI
+For:  
+Unity 5.6  
+Unity 2017
+Unity 2018
+
+HSV color picker using Unity UI
 
 ![alt tag](https://i.imgur.com/Fn2T6Nu.png)
 Should be really easy to use. Just add the prefab to the canvas, hook up an event, and it's good to go.
