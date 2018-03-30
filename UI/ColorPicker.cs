@@ -9,7 +9,7 @@ public class ColorPicker : MonoBehaviour
     private float _saturation = 0;
     private float _brightness = 0;
 
-    private float _red = 0;
+    private float _red = 1;
     private float _green = 0;
     private float _blue = 0;
 
@@ -42,6 +42,7 @@ public class ColorPicker : MonoBehaviour
 
     private void Start()
     {
+        RGBChanged();
         SendChangedEvent();
     }
 
