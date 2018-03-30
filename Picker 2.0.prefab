@@ -1467,6 +1467,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11401102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1666,6 +1667,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11410684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1744,6 +1746,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11412718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1762,6 +1765,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11413242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1842,6 +1846,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11415364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1860,6 +1865,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11415580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1905,6 +1911,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11415718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2031,6 +2038,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11418062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2049,6 +2057,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11418286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2160,6 +2169,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11421558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2288,6 +2298,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11424766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2507,6 +2518,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11428072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2708,6 +2720,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11431864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2848,6 +2861,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: 1
   m_FlexibleHeight: 1
+  m_LayoutPriority: 1
 --- !u!114 &11436574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2892,6 +2906,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11437434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2961,6 +2976,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11441004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3006,6 +3022,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11443082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3132,6 +3149,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11446360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3239,6 +3257,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: 1
   m_FlexibleHeight: 1
+  m_LayoutPriority: 1
 --- !u!114 &11452006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3353,6 +3372,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11453686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3371,6 +3391,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11454424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3604,6 +3625,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11459056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3981,6 +4003,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11469158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3999,6 +4022,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11469324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4322,6 +4346,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11477610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4340,6 +4365,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11477674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4412,6 +4438,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11480596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4488,6 +4515,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11482438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4558,6 +4586,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11482782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4878,6 +4907,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11489330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4949,6 +4979,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11493426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4967,6 +4998,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11493476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5034,6 +5066,7 @@ MonoBehaviour:
   m_PreferredHeight: 16
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11495652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5052,6 +5085,7 @@ MonoBehaviour:
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!114 &11496146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5233,7 +5267,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 255
 --- !u!222 &22202916
 CanvasRenderer:
   m_ObjectHideFlags: 1
