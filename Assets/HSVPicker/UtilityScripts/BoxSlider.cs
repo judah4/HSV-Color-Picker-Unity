@@ -133,13 +133,18 @@ namespace UnityEngine.UI
 				m_MinValue = Mathf.Round(m_MinValue);
 				m_MaxValue = Mathf.Round(m_MaxValue);
 			}
-			UpdateCachedReferences();
-			Set(m_Value, false);
-			SetY(m_ValueY, false);
-			// Update rects since other things might affect them even if value didn't change.
-			UpdateVisuals();
-			
-			var prefabType = UnityEditor.PrefabUtility.GetPrefabType(this);
+
+            //Onvalidate is called before OnEnabled. We need to make sure not to touch any other objects before OnEnable is run.
+            if (IsActive())
+            {
+                UpdateCachedReferences();
+                Set(m_Value, false);
+                SetY(m_ValueY, false);
+                // Update rects since other things might affect them even if value didn't change.
+                UpdateVisuals();
+            }
+
+            var prefabType = UnityEditor.PrefabUtility.GetPrefabType(this);
 			if (prefabType != UnityEditor.PrefabType.Prefab && !Application.isPlaying)
 				CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
 		}
