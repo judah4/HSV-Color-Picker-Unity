@@ -15,8 +15,6 @@ public class SVBoxSlider : MonoBehaviour
     private RenderTexture renderTexture;
     private Vector2Int textureSize = new Vector2Int (100, 100);
 
-    private bool isComputeShadersSupported;
-
     private float lastH = -1;
     private bool listen = true;
 
@@ -33,9 +31,7 @@ public class SVBoxSlider : MonoBehaviour
         slider = GetComponent<BoxSlider>();
         image = GetComponent<RawImage>();
 
-        isComputeShadersSupported = SystemInfo.supportsComputeShaders;
-
-        if ( isComputeShadersSupported )
+        if ( SystemInfo.supportsComputeShaders )
             InitializeCompute ();
 
         RegenerateSVTexture ();
@@ -90,7 +86,7 @@ public class SVBoxSlider : MonoBehaviour
     private void OnValidate()
     {
         image = GetComponent<RawImage>();
-        if ( isComputeShadersSupported )
+        if ( SystemInfo.supportsComputeShaders )
             InitializeCompute ();
         RegenerateSVTexture ();
     }
@@ -129,7 +125,7 @@ public class SVBoxSlider : MonoBehaviour
 
     private void RegenerateSVTexture()
     {
-        if ( isComputeShadersSupported )
+        if ( SystemInfo.supportsComputeShaders )
         {
             float hue = picker != null ? picker.H : 0;
 
