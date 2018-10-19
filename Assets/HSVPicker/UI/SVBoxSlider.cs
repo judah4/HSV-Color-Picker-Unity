@@ -75,7 +75,7 @@ public class SVBoxSlider : MonoBehaviour
     {
         if ( image.texture != null )
         {
-            if ( isComputeShadersSupported )
+            if ( SystemInfo.supportsComputeShaders )
                 renderTexture.Release ();
             else
                 DestroyImmediate (image.texture);
