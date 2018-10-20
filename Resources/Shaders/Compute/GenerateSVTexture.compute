@@ -22,7 +22,7 @@ float4 HSVtoRGB(float h, float s, float v)
 [numthreads(32, 32, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-	if (id.x > TextureSize.x || id.y > TextureSize.y)
+	if (id.x > (uint)TextureSize.x || id.y > (uint)TextureSize.y)
 		return;
 
 	Texture[id.xy] = HSVtoRGB(Hue, id.x / TextureSize.x, id.y / TextureSize.y);
