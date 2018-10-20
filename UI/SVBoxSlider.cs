@@ -144,17 +144,17 @@ public class SVBoxSlider : MonoBehaviour
             if ( image.texture != null )
                 DestroyImmediate (image.texture);
 
-            Texture2D texture = new Texture2D (100, 100);
+            var texture = new Texture2D (textureSize.x, textureSize.y);
             texture.hideFlags = HideFlags.DontSave;
 
-            for ( int s = 0; s < 100; s++ )
+            for ( int s = 0; s < textureSize.x; s++ )
             {
-                Color32[] colors = new Color32[100];
-                for ( int v = 0; v < 100; v++ )
+                Color32[] colors = new Color32[textureSize.y];
+                for ( int v = 0; v < textureSize.y; v++ )
                 {
                     colors[v] = HSVUtil.ConvertHsvToRgb (h, (float)s / 100, (float)v / 100, 1);
                 }
-                texture.SetPixels32 (s, 0, 1, 100, colors);
+                texture.SetPixels32 (s, 0, 1, textureSize.y, colors);
             }
             texture.Apply ();
 
