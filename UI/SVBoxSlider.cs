@@ -13,7 +13,8 @@ public class SVBoxSlider : MonoBehaviour
     private ComputeShader compute;
     private int kernelID;
     private RenderTexture renderTexture;
-    private Vector2Int textureSize = new Vector2Int (100, 100);
+    private int textureWidth = 100;
+    private int textureHeight = 100;
 
     private float lastH = -1;
     private bool listen = true;
@@ -41,7 +42,7 @@ public class SVBoxSlider : MonoBehaviour
     {
         if ( renderTexture == null )
         {
-            renderTexture = new RenderTexture (textureSize.x, textureSize.y, 0, RenderTextureFormat.RGB111110Float);
+            renderTexture = new RenderTexture (textureWidth, textureHeight, 0, RenderTextureFormat.RGB111110Float);
             renderTexture.enableRandomWrite = true;
             renderTexture.Create ();
         }
@@ -130,11 +131,11 @@ public class SVBoxSlider : MonoBehaviour
             float hue = picker != null ? picker.H : 0;
 
             compute.SetTexture (kernelID, "Texture", renderTexture);
-            compute.SetFloats ("TextureSize", textureSize.x, textureSize.y);
+            compute.SetFloats ("TextureSize", textureWidth, textureHeight);
             compute.SetFloat ("Hue", hue);
 
-            var threadGroupsX = Mathf.CeilToInt (textureSize.x / 32f);
-            var threadGroupsY = Mathf.CeilToInt (textureSize.y / 32f);
+            var threadGroupsX = Mathf.CeilToInt (textureWidth / 32f);
+            var threadGroupsY = Mathf.CeilToInt (textureHeight / 32f);
             compute.Dispatch (kernelID, threadGroupsX, threadGroupsY, 1);
         }
         else
@@ -144,17 +145,17 @@ public class SVBoxSlider : MonoBehaviour
             if ( image.texture != null )
                 DestroyImmediate (image.texture);
 
-            var texture = new Texture2D (textureSize.x, textureSize.y);
+            var texture = new Texture2D (textureWidth, textureHeight);
             texture.hideFlags = HideFlags.DontSave;
 
-            for ( int s = 0; s < textureSize.x; s++ )
+            for ( int s = 0; s < textureWidth; s++ )
             {
-                Color32[] colors = new Color32[textureSize.y];
-                for ( int v = 0; v < textureSize.y; v++ )
+                Color32[] colors = new Color32[textureHeight];
+                for ( int v = 0; v < textureHeight; v++ )
                 {
                     colors[v] = HSVUtil.ConvertHsvToRgb (h, (float)s / 100, (float)v / 100, 1);
                 }
-                texture.SetPixels32 (s, 0, 1, textureSize.y, colors);
+                texture.SetPixels32 (s, 0, 1, textureHeight, colors);
             }
             texture.Apply ();
 
