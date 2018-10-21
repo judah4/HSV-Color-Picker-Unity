@@ -4,10 +4,10 @@ HSV Color Picker
 HSV color picker using Unity UI
 
 ## Versions
+Unity 2018  
 Unity 2017  
 Unity 5.6  
-Unity 2018  
-2017 is default, unity 5 and 2018 are on branches.  
+2018 is default, unity 5 and 2017 can import the assets just fine.  
 
 ![alt tag](https://i.imgur.com/Fn2T6Nu.png)
 Should be really easy to use. Just add the prefab to the canvas, hook up an event, and it's good to go.
