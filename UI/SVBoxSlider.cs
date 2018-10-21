@@ -10,6 +10,12 @@ public class SVBoxSlider : MonoBehaviour
     private BoxSlider slider;
     private RawImage image;
 
+    private ComputeShader compute;
+    private int kernelID;
+    private RenderTexture renderTexture;
+    private int textureWidth = 100;
+    private int textureHeight = 100;
+
     private float lastH = -1;
     private bool listen = true;
 
@@ -26,8 +32,27 @@ public class SVBoxSlider : MonoBehaviour
         slider = GetComponent<BoxSlider>();
         image = GetComponent<RawImage>();
 
-        RegenerateSVTexture();
+        if ( SystemInfo.supportsComputeShaders )
+            InitializeCompute ();
+
+        RegenerateSVTexture ();
     }
+
+    private void InitializeCompute()
+    {
+        if ( renderTexture == null )
+        {
+            renderTexture = new RenderTexture (textureWidth, textureHeight, 0, RenderTextureFormat.RGB111110Float);
+            renderTexture.enableRandomWrite = true;
+            renderTexture.Create ();
+        }
+
+        compute = Resources.Load<ComputeShader> ("Shaders/Compute/GenerateSVTexture");
+        kernelID = compute.FindKernel ("CSMain");
+
+        image.texture = renderTexture;
+    }
+    
 
     private void OnEnable()
     {
@@ -49,15 +74,22 @@ public class SVBoxSlider : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (image.texture != null)
-            DestroyImmediate(image.texture);
+        if ( image.texture != null )
+        {
+            if ( SystemInfo.supportsComputeShaders )
+                renderTexture.Release ();
+            else
+                DestroyImmediate (image.texture);
+        }
     }
 
 #if UNITY_EDITOR
     private void OnValidate()
     {
         image = GetComponent<RawImage>();
-        RegenerateSVTexture();
+        if ( SystemInfo.supportsComputeShaders )
+            InitializeCompute ();
+        RegenerateSVTexture ();
     }
 #endif
 
@@ -94,25 +126,40 @@ public class SVBoxSlider : MonoBehaviour
 
     private void RegenerateSVTexture()
     {
-        double h = picker != null ? picker.H * 360 : 0;
-
-        if (image.texture != null)
-            DestroyImmediate(image.texture);
-
-        Texture2D texture = new Texture2D(100, 100);
-        texture.hideFlags = HideFlags.DontSave;
-
-        for (int s = 0; s < 100; s++)
+        if ( SystemInfo.supportsComputeShaders )
         {
-            Color32[] colors = new Color32[100];
-            for (int v = 0; v < 100; v++)
-            {
-                colors[v] = HSVUtil.ConvertHsvToRgb(h, (float)s / 100, (float)v / 100, 1);
-            }
-            texture.SetPixels32(s, 0, 1, 100, colors);
-        }
-        texture.Apply();
+            float hue = picker != null ? picker.H : 0;
 
-        image.texture = texture;
+            compute.SetTexture (kernelID, "Texture", renderTexture);
+            compute.SetFloats ("TextureSize", textureWidth, textureHeight);
+            compute.SetFloat ("Hue", hue);
+
+            var threadGroupsX = Mathf.CeilToInt (textureWidth / 32f);
+            var threadGroupsY = Mathf.CeilToInt (textureHeight / 32f);
+            compute.Dispatch (kernelID, threadGroupsX, threadGroupsY, 1);
+        }
+        else
+        {
+            double h = picker != null ? picker.H * 360 : 0;
+
+            if ( image.texture != null )
+                DestroyImmediate (image.texture);
+
+            var texture = new Texture2D (textureWidth, textureHeight);
+            texture.hideFlags = HideFlags.DontSave;
+
+            for ( int s = 0; s < textureWidth; s++ )
+            {
+                Color32[] colors = new Color32[textureHeight];
+                for ( int v = 0; v < textureHeight; v++ )
+                {
+                    colors[v] = HSVUtil.ConvertHsvToRgb (h, (float)s / 100, (float)v / 100, 1);
+                }
+                texture.SetPixels32 (s, 0, 1, textureHeight, colors);
+            }
+            texture.Apply ();
+
+            image.texture = texture;
+        }
     }
 }
