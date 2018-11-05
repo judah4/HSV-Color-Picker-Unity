@@ -23,20 +23,20 @@ public static class HSVUtil
         v = Math.Max(Math.Max(r, g), b);
         delta = v - min;
 
-        if (v == 0.0)
+        if (v.Equals(0))
             s = 0;
         else
             s = delta / v;
 
-        if (s == 0)
+        if (s.Equals(0))
             h = 360;
         else
         {
-            if (r == v)
+            if (r.Equals(v))
                 h = (g - b) / delta;
-            else if (g == v)
+            else if (g.Equals(v))
                 h = 2 + (b - r) / delta;
-            else if (b == v)
+            else if (b.Equals(v))
                 h = 4 + (r - g) / delta;
 
             h *= 60;
@@ -59,7 +59,7 @@ public static class HSVUtil
 
         double r = 0, g = 0, b = 0;
 
-        if (s == 0)
+        if (s.Equals(0))
         {
             r = v;
             g = v;
@@ -72,7 +72,7 @@ public static class HSVUtil
             double f, p, q, t;
 
 
-            if (h == 360)
+            if (h.Equals(360))
                 h = 0;
             else
                 h = h / 60;
