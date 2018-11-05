@@ -30,11 +30,12 @@ public class SVBoxSlider : MonoBehaviour
     {
         slider = GetComponent<BoxSlider>();
         image = GetComponent<RawImage>();
-
-        if ( SystemInfo.supportsComputeShaders )
-            InitializeCompute ();
-
-        RegenerateSVTexture ();
+        if(Application.isPlaying)
+        {
+            if(SystemInfo.supportsComputeShaders)
+                InitializeCompute ();
+            RegenerateSVTexture ();
+        }
     }
 
     private void InitializeCompute()
@@ -81,16 +82,6 @@ public class SVBoxSlider : MonoBehaviour
                 DestroyImmediate (image.texture);
         }
     }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        image = GetComponent<RawImage>();
-        if ( SystemInfo.supportsComputeShaders )
-            InitializeCompute ();
-        RegenerateSVTexture ();
-    }
-#endif
 
     private void SliderChanged(float saturation, float value)
     {

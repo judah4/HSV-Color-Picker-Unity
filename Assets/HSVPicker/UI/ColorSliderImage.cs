@@ -27,7 +27,8 @@ public class ColorSliderImage : MonoBehaviour
     {
         image = GetComponent<RawImage>();
 
-        RegenerateTexture();
+        if(Application.isPlaying)
+            RegenerateTexture();
     }
 
     private void OnEnable()
@@ -53,14 +54,6 @@ public class ColorSliderImage : MonoBehaviour
         if (image.texture != null)
             DestroyImmediate(image.texture);
     }
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        image = GetComponent<RawImage>();
-        RegenerateTexture();
-    }
-#endif
 
     private void ColorChanged(Color newColor)
     {
