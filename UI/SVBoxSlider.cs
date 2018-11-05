@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 [RequireComponent(typeof(BoxSlider), typeof(RawImage)), ExecuteInEditMode()]
 public class SVBoxSlider : MonoBehaviour

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 /// <summary>
 /// Displays one of the color values of aColorPicker
