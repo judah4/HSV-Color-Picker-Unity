@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using System.Text;
-using System.Globalization;
 
 [RequireComponent(typeof(InputField))]
 public class HexColorField : MonoBehaviour
