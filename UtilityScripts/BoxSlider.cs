@@ -148,7 +148,6 @@ namespace UnityEngine.UI
 			if (prefabType != UnityEditor.PrefabType.Prefab && !Application.isPlaying)
 				CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
 		}
-		
 		#endif // if UNITY_EDITOR
 		
 		public virtual void Rebuild(CanvasUpdate executing)
@@ -232,7 +231,7 @@ namespace UnityEngine.UI
 				newValue = Mathf.Round(newValue);
 			
 			// If the stepped value doesn't match the last one, it's time to update
-			if (m_Value == newValue)
+            if (m_Value.Equals(newValue))
 				return;
 			
 			m_Value = newValue;
@@ -254,7 +253,7 @@ namespace UnityEngine.UI
 				newValue = Mathf.Round(newValue);
 			
 			// If the stepped value doesn't match the last one, it's time to update
-			if (m_ValueY == newValue)
+            if (m_ValueY.Equals(newValue))
 				return;
 			
 			m_ValueY = newValue;

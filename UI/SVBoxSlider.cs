@@ -104,19 +104,19 @@ public class SVBoxSlider : MonoBehaviour
 
     private void HSVChanged(float h, float s, float v)
     {
-        if (lastH != h)
+        if (!lastH.Equals(h))
         {
             lastH = h;
             RegenerateSVTexture();
         }
 
-        if (s != slider.normalizedValue)
+        if (!s.Equals(slider.normalizedValue))
         {
             listen = false;
             slider.normalizedValue = s;
         }
 
-        if (v != slider.normalizedValueY)
+        if (!v.Equals(slider.normalizedValueY))
         {
             listen = false;
             slider.normalizedValueY = v;
