@@ -34,3 +34,4 @@ ehthumbs.db
 Thumbs.db
 Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll
 \.vs/
+*.meta
