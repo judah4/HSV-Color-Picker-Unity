@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 [RequireComponent(typeof(Text))]
 public class ColorLabel : MonoBehaviour

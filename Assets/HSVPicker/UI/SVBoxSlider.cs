@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 [RequireComponent(typeof(BoxSlider), typeof(RawImage)), ExecuteInEditMode()]
 public class SVBoxSlider : MonoBehaviour
@@ -31,11 +30,12 @@ public class SVBoxSlider : MonoBehaviour
     {
         slider = GetComponent<BoxSlider>();
         image = GetComponent<RawImage>();
-
-        if ( SystemInfo.supportsComputeShaders )
-            InitializeCompute ();
-
-        RegenerateSVTexture ();
+        if(Application.isPlaying)
+        {
+            if(SystemInfo.supportsComputeShaders)
+                InitializeCompute ();
+            RegenerateSVTexture ();
+        }
     }
 
     private void InitializeCompute()
@@ -83,16 +83,6 @@ public class SVBoxSlider : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        image = GetComponent<RawImage>();
-        if ( SystemInfo.supportsComputeShaders )
-            InitializeCompute ();
-        RegenerateSVTexture ();
-    }
-#endif
-
     private void SliderChanged(float saturation, float value)
     {
         if (listen)
@@ -105,19 +95,19 @@ public class SVBoxSlider : MonoBehaviour
 
     private void HSVChanged(float h, float s, float v)
     {
-        if (lastH != h)
+        if (!lastH.Equals(h))
         {
             lastH = h;
             RegenerateSVTexture();
         }
 
-        if (s != slider.normalizedValue)
+        if (!s.Equals(slider.normalizedValue))
         {
             listen = false;
             slider.normalizedValue = s;
         }
 
-        if (v != slider.normalizedValueY)
+        if (!v.Equals(slider.normalizedValueY))
         {
             listen = false;
             slider.normalizedValueY = v;
