@@ -18,6 +18,9 @@ public class SVBoxSlider : MonoBehaviour
     private float lastH = -1;
     private bool listen = true;
 
+    [SerializeField] private bool overrideComputeShader = false;
+    private bool supportsComputeShaders = false;
+
     public RectTransform rectTransform
     {
         get
@@ -32,7 +35,17 @@ public class SVBoxSlider : MonoBehaviour
         image = GetComponent<RawImage>();
         if(Application.isPlaying)
         {
-            if(SystemInfo.supportsComputeShaders)
+            supportsComputeShaders = SystemInfo.supportsComputeShaders; //check for compute shader support
+
+            #if PLATFORM_ANDROID
+            supportsComputeShaders = false; //disable on android for now. Issue with compute shader
+            #endif
+
+            if (overrideComputeShader)
+            {
+                supportsComputeShaders = false;
+            }
+            if (supportsComputeShaders)
                 InitializeCompute ();
             RegenerateSVTexture ();
         }
@@ -76,7 +89,7 @@ public class SVBoxSlider : MonoBehaviour
     {
         if ( image.texture != null )
         {
-            if ( SystemInfo.supportsComputeShaders )
+            if ( supportsComputeShaders )
                 renderTexture.Release ();
             else
                 DestroyImmediate (image.texture);
@@ -116,7 +129,7 @@ public class SVBoxSlider : MonoBehaviour
 
     private void RegenerateSVTexture()
     {
-        if ( SystemInfo.supportsComputeShaders )
+        if ( supportsComputeShaders )
         {
             float hue = picker != null ? picker.H : 0;
 
