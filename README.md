@@ -1,5 +1,6 @@
 HSV Color Picker
 ======================
+[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/Y8Y8MG4Y)
 
 HSV color picker using Unity UI
 
