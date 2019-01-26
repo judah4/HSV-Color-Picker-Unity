@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using Assets.HSVPicker;
+using UnityEngine;
 
 public class ColorPicker : MonoBehaviour
 {
+
     private float _hue = 0;
     private float _saturation = 0;
     private float _brightness = 0;
@@ -12,6 +14,10 @@ public class ColorPicker : MonoBehaviour
 
     private float _alpha = 1;
 
+    [Header("Setup")]
+    public ColorPickerSetup Setup;
+
+    [Header("Event")]
     public ColorChangedEvent onValueChanged = new ColorChangedEvent();
     public HSVChangedEvent onHSVChanged = new HSVChangedEvent();
 
@@ -39,6 +45,13 @@ public class ColorPicker : MonoBehaviour
 
     private void Start()
     {
+        Setup.AlphaSlidiers.Toggle(Setup.ShowAlpha);
+        Setup.RgbSliders.Toggle(Setup.ShowRgb);
+        Setup.HsvSliders.Toggle(Setup.ShowHsv);
+        Setup.ColorBox.Toggle(Setup.ShowColorBox);
+
+        HandleHeaderSetting(Setup.ShowHeader);
+
         RGBChanged();
         SendChangedEvent();
     }
@@ -249,5 +262,19 @@ public class ColorPicker : MonoBehaviour
             default:
                 throw new System.NotImplementedException("");
         }
+    }
+
+    private void HandleHeaderSetting(ColorPickerSetup.ColorHeaderShowing setupShowHeader)
+    {
+        if (setupShowHeader == ColorPickerSetup.ColorHeaderShowing.Hide)
+        {
+            Setup.ColorHeader.Toggle(false);
+        }
+
+        Setup.ColorHeader.Toggle(true);
+
+        Setup.ColorPreview.Toggle(setupShowHeader != ColorPickerSetup.ColorHeaderShowing.ShowColorCode);
+        Setup.ColorCode.Toggle(setupShowHeader != ColorPickerSetup.ColorHeaderShowing.ShowColor);
+
     }
 }
