@@ -51,5 +51,8 @@ namespace Assets.HSVPicker
 
         public UiElements ColorBox;
         public Text SliderToggleButtonText;
+
+        public string PresetColorsId = "default";
+        public Color[] DefaultPresetColors;
     }
 }
