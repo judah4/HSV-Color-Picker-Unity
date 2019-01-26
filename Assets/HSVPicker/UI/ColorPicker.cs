@@ -46,11 +46,13 @@ public class ColorPicker : MonoBehaviour
     private void Start()
     {
         Setup.AlphaSlidiers.Toggle(Setup.ShowAlpha);
+        Setup.ColorToggleElement.Toggle(Setup.ShowColorSliderToggle);
         Setup.RgbSliders.Toggle(Setup.ShowRgb);
         Setup.HsvSliders.Toggle(Setup.ShowHsv);
         Setup.ColorBox.Toggle(Setup.ShowColorBox);
 
         HandleHeaderSetting(Setup.ShowHeader);
+        UpdateColorToggleText();
 
         RGBChanged();
         SendChangedEvent();
@@ -261,6 +263,30 @@ public class ColorPicker : MonoBehaviour
                 return V;
             default:
                 throw new System.NotImplementedException("");
+        }
+    }
+
+    public void ToggleColorSliders()
+    {
+        Setup.ShowHsv = !Setup.ShowHsv;
+        Setup.ShowRgb = !Setup.ShowRgb;
+        Setup.HsvSliders.Toggle(Setup.ShowHsv);
+        Setup.RgbSliders.Toggle(Setup.ShowRgb);
+
+
+        UpdateColorToggleText();
+    }
+
+    void UpdateColorToggleText()
+    {
+        if (Setup.ShowRgb)
+        {
+            Setup.SliderToggleButtonText.text = "RGB";
+        }
+
+        if (Setup.ShowHsv)
+        {
+            Setup.SliderToggleButtonText.text = "HSV";
         }
     }
 

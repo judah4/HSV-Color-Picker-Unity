@@ -35,11 +35,13 @@ namespace Assets.HSVPicker
         public bool ShowHsv;
         public bool ShowAlpha = true;
         public bool ShowColorBox = true;
+        public bool ShowColorSliderToggle = true;
 
         public ColorHeaderShowing ShowHeader = ColorHeaderShowing.ShowAll;
 
         public UiElements RgbSliders;
         public UiElements HsvSliders;
+        public UiElements ColorToggleElement;
         public UiElements AlphaSlidiers;
 
 
@@ -48,7 +50,6 @@ namespace Assets.HSVPicker
         public UiElements ColorPreview;
 
         public UiElements ColorBox;
-
-
+        public Text SliderToggleButtonText;
     }
 }
