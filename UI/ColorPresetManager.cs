@@ -51,6 +51,17 @@ namespace Assets.HSVPicker
             }
         }
 
+        public void UpdateList(IEnumerable<Color> colors)
+        {
+            Colors.Clear();
+            Colors.AddRange(colors);
+
+            if (OnColorsUpdated != null)
+            {
+                OnColorsUpdated.Invoke(Colors);
+            }
+        }
+
 
     }
 }
