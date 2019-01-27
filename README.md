@@ -2,7 +2,7 @@ HSV Color Picker
 ======================
 [![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/Y8Y8MG4Y)
 
-HSV color picker using Unity UI
+HSV color picker using Unity UI.
 
 ## Versions
 Unity 2018  
@@ -43,3 +43,30 @@ if you want to assign your own color first, just do this call and it sets the sl
 ![resizable panels](https://raw.githubusercontent.com/judah4/HSV-Color-Picker-Unity/master/Docs/MoreFeatures.PNG)
 
 Can be toggled and sized as needed in settings.
+
+# Setup Settings
+
+![settings inspector](https://raw.githubusercontent.com/judah4/HSV-Color-Picker-Unity/master/Docs/SetupSettings.PNG)
+
+On the color picker setup section.
+
+Show Rgb: Show RGB sliders.
+
+Show Hsv: Show HSV sliders.
+
+Show Alpha: Show the alpha slider.
+
+Show Color Box: Show the larger color selection box and color column.
+
+Show Color Slider Toggle: Show the button to toggle the HSV and RGB sliders.
+
+Show Header: Options to show the top header with color preview and hex code.
+* Hide: Hide the top header.  
+* Show Color: Show only the color preview in the header.  
+* Show Color Code: Show only the color code in the header.  
+* Show All: Show the entire top header.  
+
+## Color Presets
+The prefabs starts with 4 colors in the color presets. This can be updated in the Setup section of the picker prefab.  
+Set the Preset Colors Id for different shared list between color pickers.
+
