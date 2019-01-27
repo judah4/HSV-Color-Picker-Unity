@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using Assets.HSVPicker;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ColorPresets : MonoBehaviour
@@ -7,23 +10,60 @@ public class ColorPresets : MonoBehaviour
 	public GameObject[] presets;
 	public Image createPresetImage;
 
+    private ColorPresetList _colors;
+
 	void Awake()
 	{
 //		picker.onHSVChanged.AddListener(HSVChanged);
 		picker.onValueChanged.AddListener(ColorChanged);
 	}
 
-	public void CreatePresetButton()
+    void Start()
+    {
+        _colors = ColorPresetManager.Get(picker.Setup.PresetColorsId);
+
+        if (_colors.Colors.Count < picker.Setup.DefaultPresetColors.Length)
+        {
+            _colors.UpdateList(picker.Setup.DefaultPresetColors);
+        }
+
+        _colors.OnColorsUpdated += OnColorsUpdate;
+        OnColorsUpdate(_colors.Colors);
+    }
+
+    private void OnColorsUpdate(List<Color> colors)
+    {
+        for (int cnt = 0; cnt < presets.Length; cnt++)
+        {
+            if (colors.Count <= cnt)
+            {
+                presets[cnt].SetActive(false);
+                continue;
+            }
+
+
+            presets[cnt].SetActive(true);
+            presets[cnt].GetComponent<Image>().color = colors[cnt];
+            
+        }
+
+        createPresetImage.gameObject.SetActive(colors.Count < presets.Length);
+
+    }
+
+    public void CreatePresetButton()
 	{
-		for (var i = 0; i < presets.Length; i++)
-		{
-			if (!presets[i].activeSelf)
-			{
-				presets[i].SetActive(true);
-				presets[i].GetComponent<Image>().color = picker.CurrentColor;
-				break;
-			}
-		}
+        _colors.AddColor(picker.CurrentColor);
+
+  //      for (var i = 0; i < presets.Length; i++)
+		//{
+		//	if (!presets[i].activeSelf)
+		//	{
+		//		presets[i].SetActive(true);
+		//		presets[i].GetComponent<Image>().color = picker.CurrentColor;
+		//		break;
+		//	}
+		//}
 	}
 
 	public void PresetSelect(Image sender)
