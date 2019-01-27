@@ -40,5 +40,6 @@ if you want to assign your own color first, just do this call and it sets the sl
     picker.CurrentColor = color;
 ```
 
-![alt text](https://raw.githubusercontent.com/judah4/hsv-color-picker/master/Docs/MoreFeatures.PNG)
+![resizable panels](https://raw.githubusercontent.com/judah4/HSV-Color-Picker-Unity/master/Docs/MoreFeatures.PNG)
 
+Can be toggled and sized as needed in settings.
