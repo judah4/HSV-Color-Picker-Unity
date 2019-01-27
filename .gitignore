@@ -36,3 +36,6 @@ Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll
 \.vs/
 
 Build/
+
+Assets/AssetStoreTools/
+Assets/AssetStoreTools\.meta
