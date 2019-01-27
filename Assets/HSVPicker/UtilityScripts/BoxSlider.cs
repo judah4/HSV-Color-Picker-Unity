@@ -144,9 +144,17 @@ namespace UnityEngine.UI
                 UpdateVisuals();
             }
 
+            #if UNITY_2018_3_OR_NEWER
+
+            if (!UnityEditor.PrefabUtility.IsPartOfPrefabAsset(this) && !Application.isPlaying)
+                CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
+
+            #else
+
             var prefabType = UnityEditor.PrefabUtility.GetPrefabType(this);
 			if (prefabType != UnityEditor.PrefabType.Prefab && !Application.isPlaying)
 				CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
+            #endif
 		}
 		#endif // if UNITY_EDITOR
 		
