@@ -137,6 +137,8 @@ public class SVBoxSlider : MonoBehaviour
             compute.SetFloats ("TextureSize", textureWidth, textureHeight);
             compute.SetFloat ("Hue", hue);
 
+            compute.SetBool("linearColorSpace", QualitySettings.activeColorSpace == ColorSpace.Linear);
+
             var threadGroupsX = Mathf.CeilToInt (textureWidth / 32f);
             var threadGroupsY = Mathf.CeilToInt (textureHeight / 32f);
             compute.Dispatch (kernelID, threadGroupsX, threadGroupsY, 1);

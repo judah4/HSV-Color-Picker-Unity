@@ -4,6 +4,7 @@ RWTexture2D<float4> Texture;
 
 float2 TextureSize;
 float Hue;
+bool linearColorSpace;
 
 float4 HUEtoRGB(float h)
 {
@@ -16,7 +17,14 @@ float4 HUEtoRGB(float h)
 float4 HSVtoRGB(float h, float s, float v)
 {
 	float4 rgb = HUEtoRGB(h);
-	return ((rgb - 1) * s + 1) * v;
+
+	float4 shiftedRgb = ((rgb - 1) * s + 1) * v;
+
+	if (linearColorSpace) {
+		shiftedRgb = pow(abs(shiftedRgb), 2.2);
+	}
+
+	return shiftedRgb;
 }
 
 [numthreads(32, 32, 1)]
