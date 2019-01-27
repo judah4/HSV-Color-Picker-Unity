@@ -39,3 +39,6 @@ if you want to assign your own color first, just do this call and it sets the sl
     Color color = Color.green;
     picker.CurrentColor = color;
 ```
+
+![alt text](https://raw.githubusercontent.com/judah4/hsv-color-picker/master/Docs/MoreFeatures.PNG)
+
