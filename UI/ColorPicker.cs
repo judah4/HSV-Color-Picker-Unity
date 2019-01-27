@@ -295,6 +295,7 @@ public class ColorPicker : MonoBehaviour
         if (setupShowHeader == ColorPickerSetup.ColorHeaderShowing.Hide)
         {
             Setup.ColorHeader.Toggle(false);
+            return;
         }
 
         Setup.ColorHeader.Toggle(true);
