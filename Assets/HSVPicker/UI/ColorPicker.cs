@@ -243,6 +243,11 @@ public class ColorPicker : MonoBehaviour
         }
     }
 
+    public void AssignColor(Color color)
+    {
+        CurrentColor = color;
+    }
+
     public float GetValue(ColorValues type)
     {
         switch (type)
