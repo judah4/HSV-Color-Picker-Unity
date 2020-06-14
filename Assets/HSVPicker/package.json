@@ -1,0 +1,11 @@
+{
+    "name": "judah4.hsvcolorpickerunity",
+    "displayName": "HSVPicker",
+    "version": "2.2.1",
+    "unity": "2019.1",
+    "description": "HSV color picker for Unity UI",
+    "keywords": [
+    ],
+    "dependencies": {
+    }
+}
