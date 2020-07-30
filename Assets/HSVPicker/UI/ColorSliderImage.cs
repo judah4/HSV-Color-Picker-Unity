@@ -179,6 +179,7 @@ public class ColorSliderImage : MonoBehaviour
             default:
                 throw new System.NotImplementedException("");
         }
+        texture.wrapMode = TextureWrapMode.Clamp;
         texture.SetPixels32(colors);
         texture.Apply();
 
