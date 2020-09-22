@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-[RequireComponent(typeof(Text))]
+[RequireComponent(typeof(TMP_Text))]
 public class ColorLabel : MonoBehaviour
 {
     public ColorPicker picker;
@@ -14,11 +15,11 @@ public class ColorLabel : MonoBehaviour
 
     public int precision = 0;
 
-    private Text label;
+    private TMP_Text label;
 
     private void Awake()
     {
-        label = GetComponent<Text>();
+        label = GetComponent<TMP_Text>();
 
     }
 
@@ -43,7 +44,7 @@ public class ColorLabel : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        label = GetComponent<Text>();
+        label = GetComponent<TMP_Text>();
         UpdateValue();
     }
 #endif
