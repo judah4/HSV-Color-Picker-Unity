@@ -8,10 +8,13 @@ namespace HSVPicker
         private float _saturation = 0;
         private float _brightness = 0;
 
+        [SerializeField, HideInInspector]
         private float _red = 1;
+        [SerializeField, HideInInspector]
         private float _green = 0;
+        [SerializeField, HideInInspector]
         private float _blue = 0;
-
+        [SerializeField, HideInInspector]
         private float _alpha = 1;
 
         [Header("Setup")]

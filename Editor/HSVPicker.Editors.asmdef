@@ -1,5 +1,5 @@
 {
-    "name": "HSVPicker.Editor",
+    "name": "HSVPicker.Editors",
     "references": [
         "HSVPicker"
     ],
