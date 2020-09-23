@@ -1,9 +1,8 @@
 ﻿
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
-namespace Assets.HSVPicker
+namespace HSVPicker
 {
     [System.Serializable]
     public class ColorPickerSetup

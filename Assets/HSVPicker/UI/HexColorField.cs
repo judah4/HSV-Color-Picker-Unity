@@ -1,51 +1,53 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-[RequireComponent(typeof(TMP_InputField))]
-public class HexColorField : MonoBehaviour
+namespace HSVPicker
 {
-    public ColorPicker hsvpicker;
-
-    public bool displayAlpha;
-
-    private TMP_InputField hexInputField;
-
-    private void Awake()
+    [RequireComponent(typeof(TMP_InputField))]
+    public class HexColorField : MonoBehaviour
     {
-        hexInputField = GetComponent<TMP_InputField>();
+        public ColorPicker hsvpicker;
 
-        // Add listeners to keep text (and color) up to date
-        hexInputField.onEndEdit.AddListener(UpdateColor);
-        hsvpicker.onValueChanged.AddListener(UpdateHex);
-    }
+        public bool displayAlpha;
 
-    private void OnDestroy()
-    {
-        hexInputField.onValueChanged.RemoveListener(UpdateColor);
-        hsvpicker.onValueChanged.RemoveListener(UpdateHex);
-    }
+        private TMP_InputField hexInputField;
 
-    private void UpdateHex(Color newColor)
-    {
-        hexInputField.text = ColorToHex(newColor);
-    }
+        private void Awake()
+        {
+            hexInputField = GetComponent<TMP_InputField>();
 
-    private void UpdateColor(string newHex)
-    {
-        Color color;
-        if (!newHex.StartsWith("#"))
-            newHex = "#"+newHex;
-        if (ColorUtility.TryParseHtmlString(newHex, out color))
-            hsvpicker.CurrentColor = color;
-        else
-            Debug.Log("hex value is in the wrong format, valid formats are: #RGB, #RGBA, #RRGGBB and #RRGGBBAA (# is optional)");
-    }
+            // Add listeners to keep text (and color) up to date
+            hexInputField.onEndEdit.AddListener(UpdateColor);
+            hsvpicker.onValueChanged.AddListener(UpdateHex);
+        }
 
-    private string ColorToHex(Color32 color)
-    {
-        return displayAlpha
-            ? string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", color.r, color.g, color.b, color.a)
-            : string.Format("#{0:X2}{1:X2}{2:X2}", color.r, color.g, color.b);
+        private void OnDestroy()
+        {
+            hexInputField.onValueChanged.RemoveListener(UpdateColor);
+            hsvpicker.onValueChanged.RemoveListener(UpdateHex);
+        }
+
+        private void UpdateHex(Color newColor)
+        {
+            hexInputField.text = ColorToHex(newColor);
+        }
+
+        private void UpdateColor(string newHex)
+        {
+            Color color;
+            if (!newHex.StartsWith("#"))
+                newHex = "#"+newHex;
+            if (ColorUtility.TryParseHtmlString(newHex, out color))
+                hsvpicker.CurrentColor = color;
+            else
+                Debug.Log("hex value is in the wrong format, valid formats are: #RGB, #RGBA, #RRGGBB and #RRGGBBAA (# is optional)");
+        }
+
+        private string ColorToHex(Color32 color)
+        {
+            return displayAlpha
+                ? string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", color.r, color.g, color.b, color.a)
+                : string.Format("#{0:X2}{1:X2}{2:X2}", color.r, color.g, color.b);
+        }
     }
 }
