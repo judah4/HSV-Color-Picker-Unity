@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace HSVPicker
@@ -11,17 +11,13 @@ namespace HSVPicker
         private BoxSlider slider;
         private RawImage image;
 
-        private ComputeShader compute;
-        private int kernelID;
-        private RenderTexture renderTexture;
+        private int textureWidth = 128;
+        private int textureHeight = 128;
         private int textureWidth = 100;
         private int textureHeight = 100;
 
         private float lastH = -1;
         private bool listen = true;
-
-        [SerializeField] private bool overrideComputeShader = false;
-        private bool supportsComputeShaders = false;
 
         public RectTransform rectTransform
         {
@@ -37,37 +33,9 @@ namespace HSVPicker
             image = GetComponent<RawImage>();
             if(Application.isPlaying)
             {
-                supportsComputeShaders = SystemInfo.supportsComputeShaders; //check for compute shader support
-
-                #if PLATFORM_ANDROID
-                supportsComputeShaders = false; //disable on android for now. Issue with compute shader
-                #endif
-
-                if (overrideComputeShader)
-                {
-                    supportsComputeShaders = false;
-                }
-                if (supportsComputeShaders)
-                    InitializeCompute ();
                 RegenerateSVTexture ();
             }
         }
-
-        private void InitializeCompute()
-        {
-            if ( renderTexture == null )
-            {
-                renderTexture = new RenderTexture (textureWidth, textureHeight, 0, RenderTextureFormat.RGB111110Float);
-                renderTexture.enableRandomWrite = true;
-                renderTexture.Create ();
-            }
-
-            compute = Resources.Load<ComputeShader> ("Shaders/Compute/GenerateSVTexture");
-            kernelID = compute.FindKernel ("CSMain");
-
-            image.texture = renderTexture;
-        }
-    
 
         private void OnEnable()
         {
@@ -91,10 +59,7 @@ namespace HSVPicker
         {
             if ( image.texture != null )
             {
-                if ( supportsComputeShaders )
-                    renderTexture.Release ();
-                else
-                    DestroyImmediate (image.texture);
+                DestroyImmediate (image.texture);
             }
         }
 
@@ -131,43 +96,27 @@ namespace HSVPicker
 
         private void RegenerateSVTexture()
         {
-            if ( supportsComputeShaders )
+            double h = picker != null ? picker.H * 360 : 0;
+
+            if ( image.texture != null )
+                DestroyImmediate (image.texture);
+
+            var texture = new Texture2D (textureWidth, textureHeight);
+            texture.hideFlags = HideFlags.DontSave;
+
+            for ( int s = 0; s < textureWidth; s++ )
             {
-                float hue = picker != null ? picker.H : 0;
-
-                compute.SetTexture (kernelID, "Texture", renderTexture);
-                compute.SetFloats ("TextureSize", textureWidth, textureHeight);
-                compute.SetFloat ("Hue", hue);
-
-                compute.SetBool("linearColorSpace", QualitySettings.activeColorSpace == ColorSpace.Linear);
-
-                var threadGroupsX = Mathf.CeilToInt (textureWidth / 32f);
-                var threadGroupsY = Mathf.CeilToInt (textureHeight / 32f);
-                compute.Dispatch (kernelID, threadGroupsX, threadGroupsY, 1);
-            }
-            else
-            {
-                double h = picker != null ? picker.H * 360 : 0;
-
-                if ( image.texture != null )
-                    DestroyImmediate (image.texture);
-
-                var texture = new Texture2D (textureWidth, textureHeight);
-                texture.hideFlags = HideFlags.DontSave;
-
-                for ( int s = 0; s < textureWidth; s++ )
+                Color[] colors = new Color[textureHeight];
+                for ( int v = 0; v < textureHeight; v++ )
                 {
-                    Color32[] colors = new Color32[textureHeight];
-                    for ( int v = 0; v < textureHeight; v++ )
-                    {
-                        colors[v] = HSVUtil.ConvertHsvToRgb (h, (float)s / 100, (float)v / 100, 1);
-                    }
-                    texture.SetPixels32 (s, 0, 1, textureHeight, colors);
+                    colors[v] = HSVUtil.ConvertHsvToRgb (h, (float)s / textureWidth, (float)v / textureHeight, 1);
                 }
-                texture.Apply ();
-
-                image.texture = texture;
+                texture.SetPixels (s, 0, 1, textureHeight, colors);
             }
+            texture.Apply();
+
+            image.texture = texture;
+            
         }
     }
 }
