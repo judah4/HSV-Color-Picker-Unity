@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace HSVPicker
@@ -13,8 +13,6 @@ namespace HSVPicker
 
         private int textureWidth = 128;
         private int textureHeight = 128;
-        private int textureWidth = 100;
-        private int textureHeight = 100;
 
         private float lastH = -1;
         private bool listen = true;
@@ -102,6 +100,7 @@ namespace HSVPicker
                 DestroyImmediate (image.texture);
 
             var texture = new Texture2D (textureWidth, textureHeight);
+            texture.wrapMode = TextureWrapMode.Clamp;
             texture.hideFlags = HideFlags.DontSave;
 
             for ( int s = 0; s < textureWidth; s++ )
