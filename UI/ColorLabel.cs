@@ -18,6 +18,7 @@ namespace HSVPicker
 
         public int precision = 0;
 
+        [SerializeField, HideInInspector]
         private TMP_Text label;
 
         private void Awake()
@@ -64,6 +65,9 @@ namespace HSVPicker
 
         private void UpdateValue()
         {
+            if(label == null)
+                return;
+
             if (picker == null)
             {
                 label.text = prefix + "-";
