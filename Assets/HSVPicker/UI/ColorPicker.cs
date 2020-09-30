@@ -8,14 +8,8 @@ namespace HSVPicker
         private float _saturation = 0;
         private float _brightness = 0;
 
-        [SerializeField, HideInInspector]
-        private float _red = 1;
-        [SerializeField, HideInInspector]
-        private float _green = 0;
-        [SerializeField, HideInInspector]
-        private float _blue = 0;
-        [SerializeField, HideInInspector]
-        private float _alpha = 1;
+        [SerializeField]
+        private Color _color = Color.red;
 
         [Header("Setup")]
         public ColorPickerSetup Setup;
@@ -28,17 +22,14 @@ namespace HSVPicker
         {
             get
             {
-                return new Color(_red, _green, _blue, _alpha);
+                return _color;
             }
             set
             {
                 if (CurrentColor == value)
                     return;
 
-                _red = value.r;
-                _green = value.g;
-                _blue = value.b;
-                _alpha = value.a;
+                _color = value;
 
                 RGBChanged();
             
@@ -122,14 +113,14 @@ namespace HSVPicker
         {
             get
             {
-                return _red;
+                return _color.r;
             }
             set
             {
-                if (_red == value)
+                if (_color.r == value)
                     return;
 
-                _red = value;
+                _color.r = value;
 
                 RGBChanged();
 
@@ -141,14 +132,14 @@ namespace HSVPicker
         {
             get
             {
-                return _green;
+                return _color.g;
             }
             set
             {
-                if (_green == value)
+                if (_color.g == value)
                     return;
 
-                _green = value;
+                _color.g = value;
 
                 RGBChanged();
 
@@ -160,14 +151,14 @@ namespace HSVPicker
         {
             get
             {
-                return _blue;
+                return _color.b;
             }
             set
             {
-                if (_blue == value)
+                if (_color.b == value)
                     return;
 
-                _blue = value;
+                _color.b = value;
 
                 RGBChanged();
 
@@ -179,14 +170,14 @@ namespace HSVPicker
         {
             get
             {
-                return _alpha;
+                return _color.a;
             }
             set
             {
-                if (_alpha == value)
+                if (_color.a == value)
                     return;
 
-                _alpha = value;
+                _color.a = value;
 
                 SendChangedEvent();
             }
@@ -203,11 +194,9 @@ namespace HSVPicker
 
         private void HSVChanged()
         {
-            Color color = HSVUtil.ConvertHsvToRgb(_hue * 360, _saturation, _brightness, _alpha);
+            Color color = HSVUtil.ConvertHsvToRgb(_hue * 360, _saturation, _brightness, _color.a);
 
-            _red = color.r;
-            _green = color.g;
-            _blue = color.b;
+            _color = color;
         }
 
         private void SendChangedEvent()

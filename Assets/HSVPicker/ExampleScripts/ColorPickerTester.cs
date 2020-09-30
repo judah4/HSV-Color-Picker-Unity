@@ -8,6 +8,7 @@ namespace HSVPicker.Examples
         public ColorPicker picker;
 
         public Color Color = Color.red;
+        public bool SetColorOnStart = false;
 
 	    // Use this for initialization
 	    void Start () 
@@ -19,8 +20,10 @@ namespace HSVPicker.Examples
             });
 
 		    renderer.material.color = picker.CurrentColor;
-
-            picker.CurrentColor = Color;
+            if(SetColorOnStart) 
+            {
+                picker.CurrentColor = Color;
+            }
         }
 	
 	    // Update is called once per frame
