@@ -1612,6 +1612,7 @@ MonoBehaviour:
   renderer: {fileID: 991856035}
   picker: {fileID: 263661731}
   Color: {r: 0.022058845, g: 0.95953333, b: 1, a: 1}
+  SetColorOnStart: 1
 --- !u!23 &991856035
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1899,6 +1900,7 @@ MonoBehaviour:
   renderer: {fileID: 1440487311}
   picker: {fileID: 2073356077}
   Color: {r: 1, g: 0, b: 0, a: 1}
+  SetColorOnStart: 0
 --- !u!23 &1440487311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2242,6 +2244,22 @@ PrefabInstance:
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.ShowHsv
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
+      propertyPath: _color.r
+      value: 0.24541062
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
+      propertyPath: _color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
+      propertyPath: _color.b
+      value: 0.6603774
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
+      propertyPath: _color.g
+      value: 0.17132434
       objectReference: {fileID: 0}
     - target: {fileID: 22402782, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: m_AnchorMax.y
