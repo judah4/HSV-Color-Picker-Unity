@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace HSVPicker
 {
@@ -16,14 +15,13 @@ namespace HSVPicker
         public float minValue = 0;
         public float maxValue = 255;
 
+    private Text label;
         public int precision = 0;
 
-        [SerializeField, HideInInspector]
-        private TMP_Text label;
-
-        private void Awake()
-        {
-            label = GetComponent<TMP_Text>();
+    private void Awake()
+    {
+        label = GetComponent<Text>();
+        
 
         }
 
@@ -45,13 +43,13 @@ namespace HSVPicker
             }
         }
 
-    #if UNITY_EDITOR
-        private void OnValidate()
-        {
-            label = GetComponent<TMP_Text>();
-            UpdateValue();
-        }
-    #endif
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        label = GetComponent<Text>();
+        UpdateValue();
+    }
+#endif
 
         private void ColorChanged(Color color)
         {

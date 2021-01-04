@@ -1,6 +1,6 @@
 ﻿
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 namespace HSVPicker
 {
@@ -50,7 +50,7 @@ namespace HSVPicker
         public UiElements ColorPreview;
 
         public UiElements ColorBox;
-        public TMP_Text SliderToggleButtonText;
+        public Text SliderToggleButtonText;
 
         public string PresetColorsId = "default";
         public Color[] DefaultPresetColors;

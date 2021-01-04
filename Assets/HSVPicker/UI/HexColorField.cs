@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-namespace HSVPicker
+[RequireComponent(typeof(InputField))]
 {
-    [RequireComponent(typeof(TMP_InputField))]
+    [RequireComponent(typeof(InputField))]
     public class HexColorField : MonoBehaviour
     {
         public ColorPicker hsvpicker;
 
         public bool displayAlpha;
 
-        private TMP_InputField hexInputField;
+    private InputField hexInputField;
 
-        private void Awake()
-        {
-            hexInputField = GetComponent<TMP_InputField>();
+    private void Awake()
+    {
+        hexInputField = GetComponent<InputField>();
 
             // Add listeners to keep text (and color) up to date
             hexInputField.onEndEdit.AddListener(UpdateColor);
