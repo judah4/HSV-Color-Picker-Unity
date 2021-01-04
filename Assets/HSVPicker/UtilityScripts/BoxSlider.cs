@@ -1,8 +1,10 @@
 ﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-namespace UnityEngine.UI
+namespace HSVPicker
 {
 	[AddComponentMenu("UI/BoxSlider", 35)]
 	[RequireComponent(typeof(RectTransform))]

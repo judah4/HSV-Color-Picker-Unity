@@ -2,13 +2,27 @@ HSV Color Picker
 ======================
 [![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/Y8Y8MG4Y)
 
-HSV color picker using Unity UI.
+HSV color picker using Unity UI. [Unity Forum Thread](https://forum.unity.com/threads/color-picker.267043/)
 
 ## Versions
-Unity 2018  
-Unity 2017  
-Unity 5.6  
-2018 is default, unity 5 and 2017 can import the assets just fine.  
+Unity 2019.4 LTS
+
+## Install
+
+### UPM
+
+```json
+{
+  "dependencies": {
+    "judah4.hsvcolorpickerunity": "https://github.com/judah4/HSV-Color-Picker-Unity.git#upm",
+    ...
+  }
+}
+```
+
+### Unity Package
+
+<https://github.com/judah4/HSV-Color-Picker-Unity/releases>
 
 ![alt tag](https://i.imgur.com/Fn2T6Nu.png)
 Should be really easy to use. Just add the prefab to the canvas, hook up an event, and it's good to go.
