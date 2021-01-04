@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-[RequireComponent(typeof(InputField))]
+namespace HSVPicker
 {
     [RequireComponent(typeof(InputField))]
     public class HexColorField : MonoBehaviour

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace HSVPicker
 {
 
-    [RequireComponent(typeof(TMP_Text))]
+    [RequireComponent(typeof(Text))]
     public class ColorLabel : MonoBehaviour
     {
         public ColorPicker picker;
