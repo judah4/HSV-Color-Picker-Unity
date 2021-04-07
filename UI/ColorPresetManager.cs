@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.HSVPicker
+namespace HSVPicker
 {
     public static class ColorPresetManager
     {

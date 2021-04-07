@@ -1,135 +1,136 @@
 ﻿using UnityEngine;
 using System;
 
-
+namespace HSVPicker 
+{
 
 #region ColorUtilities
 
-public static class HSVUtil
-{
-
-    public static HsvColor ConvertRgbToHsv(Color color)
+    public static class HSVUtil
     {
-        return ConvertRgbToHsv((int)(color.r * 255), (int)(color.g * 255), (int)(color.b * 255));
-    }
 
-    //Converts an RGB color to an HSV color.
-    public static HsvColor ConvertRgbToHsv(double r, double b, double g)
-    {
-        double delta, min;
-        double h = 0, s, v;
-
-        min = Math.Min(Math.Min(r, g), b);
-        v = Math.Max(Math.Max(r, g), b);
-        delta = v - min;
-
-        if (v.Equals(0))
-            s = 0;
-        else
-            s = delta / v;
-
-        if (s.Equals(0))
-            h = 360;
-        else
+        public static HsvColor ConvertRgbToHsv(Color color)
         {
-            if (r.Equals(v))
-                h = (g - b) / delta;
-            else if (g.Equals(v))
-                h = 2 + (b - r) / delta;
-            else if (b.Equals(v))
-                h = 4 + (r - g) / delta;
-
-            h *= 60;
-            if (h <= 0.0)
-                h += 360;
+            return ConvertRgbToHsv((int)(color.r * 255), (int)(color.g * 255), (int)(color.b * 255));
         }
 
-        HsvColor hsvColor = new HsvColor();
-        hsvColor.H = 360 - h;
-        hsvColor.S = s;
-        hsvColor.V = v / 255;
-
-        return hsvColor;
-
-    }
-
-    // Converts an HSV color to an RGB color.
-    public static Color ConvertHsvToRgb(double h, double s, double v, float alpha)
-    {
-
-        double r = 0, g = 0, b = 0;
-
-        if (s.Equals(0))
+        //Converts an RGB color to an HSV color.
+        public static HsvColor ConvertRgbToHsv(double r, double b, double g)
         {
-            r = v;
-            g = v;
-            b = v;
-        }
+            double delta, min;
+            double h = 0, s, v;
 
-        else
-        {
-            int i;
-            double f, p, q, t;
+            min = Math.Min(Math.Min(r, g), b);
+            v = Math.Max(Math.Max(r, g), b);
+            delta = v - min;
 
-
-            if (h.Equals(360))
-                h = 0;
+            if (v.Equals(0))
+                s = 0;
             else
-                h = h / 60;
+                s = delta / v;
 
-            i = (int)(h);
-            f = h - i;
-
-            p = v * (1.0 - s);
-            q = v * (1.0 - (s * f));
-            t = v * (1.0 - (s * (1.0f - f)));
-
-
-            switch (i)
+            if (s.Equals(0))
+                h = 360;
+            else
             {
-                case 0:
-                    r = v;
-                    g = t;
-                    b = p;
-                    break;
+                if (r.Equals(v))
+                    h = (g - b) / delta;
+                else if (g.Equals(v))
+                    h = 2 + (b - r) / delta;
+                else if (b.Equals(v))
+                    h = 4 + (r - g) / delta;
 
-                case 1:
-                    r = q;
-                    g = v;
-                    b = p;
-                    break;
-
-                case 2:
-                    r = p;
-                    g = v;
-                    b = t;
-                    break;
-
-                case 3:
-                    r = p;
-                    g = q;
-                    b = v;
-                    break;
-
-                case 4:
-                    r = t;
-                    g = p;
-                    b = v;
-                    break;
-
-                default:
-                    r = v;
-                    g = p;
-                    b = q;
-                    break;
+                h *= 60;
+                if (h <= 0.0)
+                    h += 360;
             }
 
+            HsvColor hsvColor = new HsvColor();
+            hsvColor.H = 360 - h;
+            hsvColor.S = s;
+            hsvColor.V = v / 255;
+
+            return hsvColor;
+
         }
 
-        return new Color((float)r, (float)g, (float)b, alpha);
+        // Converts an HSV color to an RGB color.
+        public static Color ConvertHsvToRgb(double h, double s, double v, float alpha)
+        {
 
+            double r = 0, g = 0, b = 0;
+
+            if (s.Equals(0))
+            {
+                r = v;
+                g = v;
+                b = v;
+            }
+
+            else
+            {
+                int i;
+                double f, p, q, t;
+
+
+                if (h.Equals(360))
+                    h = 0;
+                else
+                    h = h / 60;
+
+                i = (int)(h);
+                f = h - i;
+
+                p = v * (1.0 - s);
+                q = v * (1.0 - (s * f));
+                t = v * (1.0 - (s * (1.0f - f)));
+
+
+                switch (i)
+                {
+                    case 0:
+                        r = v;
+                        g = t;
+                        b = p;
+                        break;
+
+                    case 1:
+                        r = q;
+                        g = v;
+                        b = p;
+                        break;
+
+                    case 2:
+                        r = p;
+                        g = v;
+                        b = t;
+                        break;
+
+                    case 3:
+                        r = p;
+                        g = q;
+                        b = v;
+                        break;
+
+                    case 4:
+                        r = t;
+                        g = p;
+                        b = v;
+                        break;
+
+                    default:
+                        r = v;
+                        g = p;
+                        b = q;
+                        break;
+                }
+
+            }
+
+            return new Color((float)r, (float)g, (float)b, alpha);
+
+        }
     }
-}
 
 
 #endregion ColorUtilities
@@ -138,40 +139,40 @@ public static class HSVUtil
 // Describes a color in terms of
 // Hue, Saturation, and Value (brightness)
 #region HsvColor
-public struct HsvColor
-{
-    /// <summary>
-    /// The Hue, ranges between 0 and 360
-    /// </summary>
-    public double H;
-
-    /// <summary>
-    /// The saturation, ranges between 0 and 1
-    /// </summary>
-    public double S;
-
-    // The value (brightness), ranges between 0 and 1
-    public double V;
-
-    public float normalizedH
+    public struct HsvColor
     {
-        get
+        /// <summary>
+        /// The Hue, ranges between 0 and 360
+        /// </summary>
+        public double H;
+
+        /// <summary>
+        /// The saturation, ranges between 0 and 1
+        /// </summary>
+        public double S;
+
+        // The value (brightness), ranges between 0 and 1
+        public double V;
+
+        public float normalizedH
         {
-            return (float)H / 360f;
+            get
+            {
+                return (float)H / 360f;
+            }
+
+            set
+            {
+                H = (double)value * 360;
+            }
         }
 
-        set
+        public float normalizedS
         {
-            H = (double)value * 360;
-        }
-    }
-
-    public float normalizedS
-    {
-        get
-        {
-            return (float)S;
-        }
+            get
+            {
+                return (float)S;
+            }
         set
         {
             S = (double)value;
@@ -202,8 +203,8 @@ public struct HsvColor
         return "{" + H.ToString("f2") + "," + S.ToString("f2") + "," + V.ToString("f2") + "}";
     }
 }
-#endregion HsvColor
+    #endregion HsvColor
 
 
-
+}
 

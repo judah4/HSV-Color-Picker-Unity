@@ -1,9 +1,8 @@
 {
-    "name": "HSVPicker.Editor",
+    "name": "HSVPicker.Editors",
     "references": [
         "HSVPicker"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -13,5 +12,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }
