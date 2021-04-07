@@ -5,11 +5,7 @@ HSV Color Picker
 HSV color picker using Unity UI. [Unity Forum Thread](https://forum.unity.com/threads/color-picker.267043/)
 
 ## Versions
-Unity 2019
-Unity 2018  
-Unity 2017  
-Unity 5.6  
-2019 is default, 2018 can import the assets just fine.  2017 and Unity 5 versions are on older branches.
+Unity 2019.4 LTS
 
 ## Install
 
