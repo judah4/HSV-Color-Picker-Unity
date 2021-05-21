@@ -82,5 +82,11 @@ namespace HSVPicker
 	    {
 		    createPresetImage.color = color;
 	    }
+
+        private void OnDestroy()
+        {
+            picker.onValueChanged.RemoveListener(ColorChanged);
+            _colors.OnColorsUpdated -= OnColorsUpdate;
+        }
     }
 }
