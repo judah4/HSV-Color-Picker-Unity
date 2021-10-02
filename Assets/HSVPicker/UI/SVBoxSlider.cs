@@ -50,6 +50,7 @@ namespace HSVPicker
             {
                 slider.onValueChanged.RemoveListener(SliderChanged);
                 picker.onHSVChanged.RemoveListener(HSVChanged);
+                RegenerateSVTexture();
             }
         }
 
