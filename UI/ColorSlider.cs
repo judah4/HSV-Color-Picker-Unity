@@ -97,5 +97,10 @@ namespace HSVPicker
         {
             onSliderChangeEndEvent.Invoke(slider.normalizedValue);
         }
+
+        public void SliderClicked(BaseEventData data)
+        {
+            SliderChanged(slider.value);
+        }
     }
 }
