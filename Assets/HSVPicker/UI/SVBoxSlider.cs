@@ -41,6 +41,7 @@ namespace HSVPicker
             {
                 slider.onValueChanged.AddListener(SliderChanged);
                 picker.onHSVChanged.AddListener(HSVChanged);
+                RegenerateSVTexture();
             }
         }
 
