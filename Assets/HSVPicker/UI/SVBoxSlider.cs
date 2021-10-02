@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace HSVPicker
 {
     [RequireComponent(typeof(BoxSlider), typeof(RawImage)), ExecuteInEditMode()]
-    public class SVBoxSlider : MonoBehaviour
+    public class SVBoxSlider : MonoBehaviour, IEndDragHandler
     {
         public ColorPicker picker;
 
@@ -16,6 +17,9 @@ namespace HSVPicker
 
         private float lastH = -1;
         private bool listen = true;
+
+        [Header("Event")]
+        public SliderOnChangeEndEvent onSliderChangeEndEvent = new SliderOnChangeEndEvent();
 
         public RectTransform rectTransform
         {
@@ -41,7 +45,6 @@ namespace HSVPicker
             {
                 slider.onValueChanged.AddListener(SliderChanged);
                 picker.onHSVChanged.AddListener(HSVChanged);
-                RegenerateSVTexture();
             }
         }
 
@@ -117,6 +120,11 @@ namespace HSVPicker
 
             image.texture = texture;
             
+        }
+
+        public virtual void OnEndDrag(PointerEventData eventData)
+        {
+            onSliderChangeEndEvent.Invoke(slider.normalizedValue);
         }
     }
 }
