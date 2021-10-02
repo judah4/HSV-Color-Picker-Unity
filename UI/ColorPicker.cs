@@ -37,6 +37,11 @@ namespace HSVPicker
             }
         }
 
+        private void OnEnable()
+        {
+            SendChangedEvent();
+        }
+
         private void Start()
         {
             Setup.AlphaSlidiers.Toggle(Setup.ShowAlpha);
