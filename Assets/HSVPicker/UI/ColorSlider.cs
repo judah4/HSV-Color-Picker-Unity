@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace HSVPicker
 {
@@ -6,7 +7,7 @@ namespace HSVPicker
     /// Displays one of the color values of aColorPicker
     /// </summary>
     [RequireComponent(typeof(Slider))]
-    public class ColorSlider : MonoBehaviour
+    public class ColorSlider : MonoBehaviour, IEndDragHandler
     {
         public ColorPicker hsvpicker;
 
@@ -18,6 +19,9 @@ namespace HSVPicker
         private Slider slider;
 
         private bool listen = true;
+
+        [Header("Event")]
+        public SliderOnChangeEndEvent onSliderChangeEndEvent = new SliderOnChangeEndEvent();
 
         private void Awake()
         {
@@ -87,6 +91,11 @@ namespace HSVPicker
                 hsvpicker.AssignColor(type, newValue);
             }
             listen = true;
+        }
+
+        public virtual void OnEndDrag(PointerEventData eventData)
+        {
+            onSliderChangeEndEvent.Invoke(slider.normalizedValue);
         }
     }
 }
