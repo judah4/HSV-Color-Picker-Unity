@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-namespace HSVPicker.Examples
+﻿using HSVPicker;
+using UnityEngine;
+namespace HSVPickerExamples
 {
     public class ColorPickerTester : MonoBehaviour 
     {
