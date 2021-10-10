@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace HSVPicker.Examples
+namespace HSVPickerExamples
 {
 	public class TiltWindow : MonoBehaviour
 	{
