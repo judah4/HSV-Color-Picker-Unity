@@ -40,3 +40,5 @@ Assets/AssetStoreTools/
 Assets/AssetStoreTools\.meta
 
 Logs/
+
+.vsconfig
