@@ -30,7 +30,13 @@ For a specific version reference the tag like `https://github.com/judah4/HSV-Col
 Should be really easy to use. Just add the prefab to the canvas, hook up an event, and it's good to go.
 ```csharp
 
-    public Renderer renderer;
+using HSVPicker;
+using UnityEngine;
+
+public class SomeClass : MonoBehavior
+{
+
+	public Renderer renderer;
 	public ColorPicker picker;
      
 	// Use this for initialization
@@ -47,6 +53,9 @@ Should be really easy to use. Just add the prefab to the canvas, hook up an even
 	void Update () {
  
 	}
+	...
+
+
   ```
 
 if you want to assign your own color first, just do this call and it sets the slider and picker to the proper selection.
