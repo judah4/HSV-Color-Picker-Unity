@@ -21,7 +21,24 @@ namespace HSVPicker
 
         void Start()
         {
+            GenerateDefaultPresetColours();
+        }
+
+        void OnEnable()
+        {
+            // if the picker is set to regenerate its settings on open, then
+            // regenerate the default picker options.
+            if (picker.Setup.RegenerateOnOpen)
+            {
+                GenerateDefaultPresetColours();
+            }
+        }
+
+        private void GenerateDefaultPresetColours()
+        {
+            List <Color> empty = new List<Color>();
             _colors = ColorPresetManager.Get(picker.Setup.PresetColorsId);
+            _colors.UpdateList(empty);
 
             if (_colors.Colors.Count < picker.Setup.DefaultPresetColors.Length)
             {
@@ -48,7 +65,7 @@ namespace HSVPicker
             
             }
 
-            createPresetImage.gameObject.SetActive(colors.Count < presets.Length);
+            createPresetImage.gameObject.SetActive((colors.Count < presets.Length) && picker.Setup.UserCanAddPresets);
 
         }
 
