@@ -39,10 +39,27 @@ namespace HSVPicker
 
         private void OnEnable()
         {
-            SendChangedEvent();
+            if (Setup.RegenerateOnOpen)
+            {
+                Regenerate();
+            }
+            // no need to call this if Regenerate() has already been called.
+            else
+            {
+                SendChangedEvent();
+            }
         }
 
         private void Start()
+        {
+            Regenerate();
+        }
+
+        /// <summary>
+        /// Apply setup values to sliders, colour boxes, etc.
+        /// Also calls RGBChanged() and SendChangedEvent()
+        /// </summary>
+        private void Regenerate()
         {
             Setup.AlphaSlidiers.Toggle(Setup.ShowAlpha);
             Setup.ColorToggleElement.Toggle(Setup.ShowColorSliderToggle);
