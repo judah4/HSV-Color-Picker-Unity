@@ -33,10 +33,6 @@ namespace HSVPicker
         {
             slider = GetComponent<BoxSlider>();
             image = GetComponent<RawImage>();
-            if(Application.isPlaying)
-            {
-                RegenerateSVTexture ();
-            }
         }
 
         private void OnEnable()
@@ -45,6 +41,11 @@ namespace HSVPicker
             {
                 slider.onValueChanged.AddListener(SliderChanged);
                 picker.onHSVChanged.AddListener(HSVChanged);
+            }
+
+            if (Application.isPlaying)
+            {
+                RegenerateSVTexture();
             }
         }
 
