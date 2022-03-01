@@ -43,11 +43,6 @@ namespace HSVPicker
             {
                 Regenerate();
             }
-            // no need to call this if Regenerate() has already been called.
-            else
-            {
-                SendChangedEvent();
-            }
         }
 
         private void Start()
@@ -57,7 +52,7 @@ namespace HSVPicker
 
         /// <summary>
         /// Apply setup values to sliders, colour boxes, etc.
-        /// Also calls RGBChanged() and SendChangedEvent()
+        /// Also calls RGBChanged()
         /// </summary>
         private void Regenerate()
         {
@@ -71,7 +66,6 @@ namespace HSVPicker
             UpdateColorToggleText();
 
             RGBChanged();
-            SendChangedEvent();
         }
 
         public float H
