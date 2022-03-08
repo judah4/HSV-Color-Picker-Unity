@@ -39,10 +39,22 @@ namespace HSVPicker
 
         private void OnEnable()
         {
-            SendChangedEvent();
+            if (Setup.RegenerateOnOpen)
+            {
+                Regenerate();
+            }
         }
 
         private void Start()
+        {
+            Regenerate();
+        }
+
+        /// <summary>
+        /// Apply setup values to sliders, colour boxes, etc.
+        /// Also calls RGBChanged()
+        /// </summary>
+        private void Regenerate()
         {
             Setup.AlphaSlidiers.Toggle(Setup.ShowAlpha);
             Setup.ColorToggleElement.Toggle(Setup.ShowColorSliderToggle);
@@ -54,7 +66,6 @@ namespace HSVPicker
             UpdateColorToggleText();
 
             RGBChanged();
-            SendChangedEvent();
         }
 
         public float H
