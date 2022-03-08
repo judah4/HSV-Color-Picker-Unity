@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 namespace HSVPicker
@@ -36,6 +35,11 @@ namespace HSVPicker
         public bool ShowAlpha = true;
         public bool ShowColorBox = true;
         public bool ShowColorSliderToggle = true;
+
+        [Tooltip("Re-initialise the colour picker settings every time the picker is made active.")]
+        public bool RegenerateOnOpen = false;
+        [Tooltip("Enable the user to add presets, up to the maximum preset limit.")]
+        public bool UserCanAddPresets = true;
 
         public ColorHeaderShowing ShowHeader = ColorHeaderShowing.ShowAll;
 
