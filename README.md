@@ -14,7 +14,7 @@ Unity 2019.4 LTS
 ```json
 {
   "dependencies": {
-    "judah4.hsvcolorpicker": "https://github.com/judah4/HSV-Color-Picker-Unity.git#upm",
+    "com.judahperez.hsvcolorpicker": "https://github.com/judah4/HSV-Color-Picker-Unity.git#upm",
     ...
   }
 }
