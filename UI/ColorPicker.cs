@@ -293,6 +293,11 @@ namespace HSVPicker
 
         void UpdateColorToggleText()
         {
+            if (Setup.SliderToggleButtonText == null)
+            {
+                return;
+            }
+            
             if (Setup.ShowRgb)
             {
                 Setup.SliderToggleButtonText.text = "RGB";
