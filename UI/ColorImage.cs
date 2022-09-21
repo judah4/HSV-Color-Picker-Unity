@@ -14,6 +14,7 @@ namespace HSVPicker
         {
             image = GetComponent<Image>();
             picker.onValueChanged.AddListener(ColorChanged);
+            ColorChanged(picker.CurrentColor);
         }
 
         private void OnDestroy()

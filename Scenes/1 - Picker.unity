@@ -220,6 +220,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 518583475}
     m_Modifications:
+    - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22402782, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1899,7 +1903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1440487311}
   picker: {fileID: 2073356077}
-  Color: {r: 1, g: 0, b: 0, a: 1}
+  Color: {r: 0.6603774, g: 0.109024554, b: 0.30829984, a: 1}
   SetColorOnStart: 0
 --- !u!23 &1440487311
 MeshRenderer:
@@ -2236,6 +2240,10 @@ PrefabInstance:
     - target: {fileID: 157272, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: m_Name
       value: Picker 2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
+      propertyPath: Setup.RegenerateOnOpen
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22402782, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: m_AnchorMax.y
