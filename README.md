@@ -95,3 +95,7 @@ Show Header: Options to show the top header with color preview and hex code.
 The prefabs starts with 4 colors in the color presets. This can be updated in the Setup section of the picker prefab.  
 Set the Preset Colors Id for different shared list between color pickers.
 
+# UPM Branching
+
+Make sure everything is up to date locally and run:
+`git subtree split --prefix=Assets/HSVPicker -b upm`
