@@ -42,7 +42,6 @@ namespace HSVPicker
             {
                 slider.onValueChanged.AddListener(SliderChanged);
                 picker.onHSVChanged.AddListener(HSVChanged);
-                Debug.Log($"{picker.CurrentColor} - H:{picker.H}, S:{picker.S}, V:{picker.V}");
                 HSVChanged(picker.H, picker.S, picker.V);
             }
 
