@@ -1,6 +1,5 @@
 HSV Color Picker
 ======================
-[![ko-fi](https://www.ko-fi.com/img/donate_sm.png)](https://ko-fi.com/Y8Y8MG4Y)
 
 HSV color picker using Unity UI. [Unity Forum Thread](https://forum.unity.com/threads/color-picker.267043/)
 
@@ -97,7 +96,6 @@ Set the Preset Colors Id for different shared list between color pickers.
 
 # UPM Branching
 
-Make sure everything is up to date locally and run:
-`git subtree split --prefix=Assets/HSVPicker -b upm`
-
-`git push origin upm:upm`
+Make sure everything is up to date locally and run:  
+`git subtree split --prefix=Assets/HSVPicker -b upm`  
+`git push origin upm:upm`  
