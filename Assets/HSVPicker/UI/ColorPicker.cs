@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 namespace HSVPicker
 {
+    [DefaultExecutionOrder(0)]
     public class ColorPicker : MonoBehaviour
     {
 
@@ -37,17 +38,17 @@ namespace HSVPicker
             }
         }
 
+        private void Awake()
+        {
+            Regenerate();
+        }
+
         private void OnEnable()
         {
             if (Setup.RegenerateOnOpen)
             {
                 Regenerate();
             }
-        }
-
-        private void Start()
-        {
-            Regenerate();
         }
 
         /// <summary>

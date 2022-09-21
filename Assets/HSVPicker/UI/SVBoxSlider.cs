@@ -5,6 +5,7 @@ using UnityEngine.UI;
 namespace HSVPicker
 {
     [RequireComponent(typeof(BoxSlider), typeof(RawImage)), ExecuteInEditMode()]
+    [DefaultExecutionOrder(10)]
     public class SVBoxSlider : MonoBehaviour, IEndDragHandler
     {
         public ColorPicker picker;
@@ -41,6 +42,8 @@ namespace HSVPicker
             {
                 slider.onValueChanged.AddListener(SliderChanged);
                 picker.onHSVChanged.AddListener(HSVChanged);
+                Debug.Log($"{picker.CurrentColor} - H:{picker.H}, S:{picker.S}, V:{picker.V}");
+                HSVChanged(picker.H, picker.S, picker.V);
             }
 
             if (Application.isPlaying)

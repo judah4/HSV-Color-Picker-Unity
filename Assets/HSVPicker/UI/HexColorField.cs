@@ -4,6 +4,7 @@ using TMPro;
 namespace HSVPicker
 {
     [RequireComponent(typeof(TMP_InputField))]
+    [DefaultExecutionOrder(10)]
     public class HexColorField : MonoBehaviour
     {
         public ColorPicker hsvpicker;
@@ -12,13 +13,14 @@ namespace HSVPicker
 
         private TMP_InputField hexInputField;
 
-        private void Awake()
+        private void Start()
         {
             hexInputField = GetComponent<TMP_InputField>();
 
             // Add listeners to keep text (and color) up to date
             hexInputField.onEndEdit.AddListener(UpdateColor);
             hsvpicker.onValueChanged.AddListener(UpdateHex);
+            UpdateHex(hsvpicker.CurrentColor);
         }
 
         private void OnDestroy()
