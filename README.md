@@ -99,3 +99,5 @@ Set the Preset Colors Id for different shared list between color pickers.
 
 Make sure everything is up to date locally and run:
 `git subtree split --prefix=Assets/HSVPicker -b upm`
+
+`git push origin upm:upm`
