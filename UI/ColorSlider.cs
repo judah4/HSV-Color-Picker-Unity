@@ -1,5 +1,4 @@
-﻿using UnityEditor.Sprites;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace HSVPicker
