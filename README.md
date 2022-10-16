@@ -4,7 +4,7 @@ HSV Color Picker
 HSV color picker using Unity UI. [Unity Forum Thread](https://forum.unity.com/threads/color-picker.267043/)
 
 ## Versions
-Unity 2019.4 LTS
+Unity 2020.3 LTS
 
 ## Install
 
@@ -19,7 +19,7 @@ Unity 2019.4 LTS
 }
 ```
 
-For a specific version reference the tag like `https://github.com/judah4/HSV-Color-Picker-Unity.git#v3.2.2`
+For a specific version reference the tag like `https://github.com/judah4/HSV-Color-Picker-Unity.git#v3.3.0`
 
 ### Unity Package
 
@@ -97,5 +97,5 @@ Set the Preset Colors Id for different shared list between color pickers.
 # UPM Branching
 
 Make sure everything is up to date locally and run:  
-`git subtree split --prefix=Assets/HSVPicker -b upm`  
+`git subtree split --prefix=Packages/com.judahperez.hsvcolorpicker -b upm`  
 `git push origin upm:upm`  
