@@ -1,11 +1,9 @@
 {
-    "name": "com.judahperez.hsvcolorpicker",
-    "displayName": "HSV Color Picker",
-    "version": "3.3.0",
-    "unity": "2020.3",
-    "description": "HSV color picker for Unity UI",
-    "keywords": [
-    ],
-    "dependencies": {
-    }
+  "name": "com.judahperez.hsvcolorpicker",
+  "displayName": "HSV Color Picker",
+  "version": "3.3.0",
+  "unity": "2020.3",
+  "description": "HSV color picker for Unity UI",
+  "keywords": [],
+  "type": "library"
 }
