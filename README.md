@@ -19,7 +19,7 @@ Unity 2020.3 LTS
 }
 ```
 
-For a specific version reference the tag like `https://github.com/judah4/HSV-Color-Picker-Unity.git#v3.3.0`
+For a specific version reference the tag like `https://github.com/judah4/HSV-Color-Picker-Unity.git#v3.2.2`
 
 ### Unity Package
 
