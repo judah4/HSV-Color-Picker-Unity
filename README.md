@@ -1,6 +1,8 @@
 HSV Color Picker
 ======================
 
+[![openupm](https://img.shields.io/npm/v/com.judahperez.hsvcolorpicker?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.judahperez.hsvcolorpicker/)
+
 HSV color picker using Unity UI. [Unity Forum Thread](https://forum.unity.com/threads/color-picker.267043/)
 
 ## Versions
@@ -10,16 +12,22 @@ Unity 2020.3 LTS
 
 ### UPM
 
+Follow the instructions on OpenUpm
+[![openupm](https://img.shields.io/npm/v/com.judahperez.hsvcolorpicker?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.judahperez.hsvcolorpicker/)
 ```json
 {
-  "dependencies": {
-    "com.judahperez.hsvcolorpicker": "https://github.com/judah4/HSV-Color-Picker-Unity.git#upm",
-    ...
-  }
+    "scopedRegistries": [
+        {
+            "name": "package.openupm.com",
+            "url": "https://package.openupm.com",
+            "scopes": []
+        }
+    ],
+    "dependencies": {
+        "com.judahperez.hsvcolorpicker": "3.3.0"
+    }
 }
 ```
-
-For a specific version reference the tag like `https://github.com/judah4/HSV-Color-Picker-Unity.git#v3.2.2`
 
 ### Unity Package
 
@@ -93,9 +101,3 @@ Show Header: Options to show the top header with color preview and hex code.
 ## Color Presets
 The prefabs starts with 4 colors in the color presets. This can be updated in the Setup section of the picker prefab.  
 Set the Preset Colors Id for different shared list between color pickers.
-
-# UPM Branching
-
-Make sure everything is up to date locally and run:  
-`git subtree split --prefix=Packages/com.judahperez.hsvcolorpicker -b upm`  
-`git push origin upm:upm`  
