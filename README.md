@@ -13,7 +13,7 @@ Unity 2020.3 LTS
 ### UPM
 
 Follow the instructions on OpenUpm
-[![openupm](https://img.shields.io/npm/v/com.judahperez.hsvcolorpicker?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.judahperez.hsvcolorpicker/)
+https://openupm.com/packages/com.judahperez.hsvcolorpicker/
 ```json
 {
     "scopedRegistries": [
