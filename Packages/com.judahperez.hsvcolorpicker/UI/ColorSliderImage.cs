@@ -15,6 +15,7 @@ namespace HSVPicker
         public Slider.Direction direction;
 
         private RawImage image;
+        private Texture initialTexture;
 
         private RectTransform rectTransform
         {
@@ -27,6 +28,7 @@ namespace HSVPicker
         private void Awake()
         {
             image = GetComponent<RawImage>();
+            initialTexture = image.texture;
 
             if(Application.isPlaying)
                 RegenerateTexture();
@@ -52,7 +54,7 @@ namespace HSVPicker
 
         private void OnDestroy()
         {
-            if (image.texture != null)
+            if (image.texture != null && image.texture != initialTexture)
                 DestroyImmediate(image.texture);
         }
 
@@ -184,7 +186,7 @@ namespace HSVPicker
             texture.SetPixels32(colors);
             texture.Apply();
 
-            if (image.texture != null)
+            if (image.texture != null && image.texture != initialTexture)
                 DestroyImmediate(image.texture);
             image.texture = texture;
 
