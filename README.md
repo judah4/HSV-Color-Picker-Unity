@@ -20,7 +20,9 @@ https://openupm.com/packages/com.judahperez.hsvcolorpicker/
         {
             "name": "package.openupm.com",
             "url": "https://package.openupm.com",
-            "scopes": []
+            "scopes": [
+                "com.judahperez"
+            ]
         }
     ],
     "dependencies": {
